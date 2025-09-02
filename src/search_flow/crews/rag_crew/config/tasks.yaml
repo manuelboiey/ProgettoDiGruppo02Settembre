@@ -1,0 +1,6 @@
+document_search_task:
+  description: >
+    Consulta i documenti forniti tramite il tool e rispondi alle domande dell'utente.
+  expected_output: >
+    Risposta chiara e concisa basata sui documenti trovati.
+  agent: document_searcher

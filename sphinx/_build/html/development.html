@@ -1,0 +1,1422 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Development Guide &mdash; RAG Search Flow 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing Guidelines" href="contributing.html" />
+    <link rel="prev" title="Examples and Use Cases" href="examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            RAG Search Flow
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-steps">Installation Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#virtual-environment-setup">Virtual Environment Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#development-installation">Development Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#example-session">Example Session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#advanced-features">Advanced Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core Components:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="search_flow.html">Search Flow Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#architecture-diagram">Architecture Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#core-components">Core Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="search_flow.html#searchstate">SearchState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_flow.html#searchflow">SearchFlow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#flow-steps">Flow Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#intent-detection">Intent Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#routing-logic">Routing Logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#state-management">State Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#extending-the-flow">Extending the Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#integration-points">Integration Points</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="crews.html">Crews System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#rag-crew">RAG Crew</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="crews.html#components">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crews.html#workflow">Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#search-crew">Search Crew</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="crews.html#id1">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crews.html#id2">Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#crew-collaboration">Crew Collaboration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#agent-communication">Agent Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#customizing-crews">Customizing Crews</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#rag-tool">RAG Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#implementation">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#usage-example">Usage Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#duckduckgo-search-tool">DuckDuckGo Search Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#id1">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#id2">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#id3">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#id4">Usage Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#tool-integration">Tool Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#custom-tool-development">Custom Tool Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#tool-registration">Tool Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#monitoring-and-logging">Monitoring and Logging</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-files-structure">Configuration Files Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#agents-configuration">Agents Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#basic-agent-structure">Basic Agent Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#agent-properties">Agent Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#example-rag-crew-agents">Example RAG Crew Agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#example-search-crew-agents">Example Search Crew Agents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#tasks-configuration">Tasks Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#basic-task-structure">Basic Task Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#task-properties">Task Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#example-rag-crew-tasks">Example RAG Crew Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#example-search-crew-tasks">Example Search Crew Tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#system-configuration">System Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#configuration-file">Configuration File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#customization-examples">Customization Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#adding-a-new-agent">Adding a New Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#modifying-agent-behavior">Modifying Agent Behavior</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#advanced-configuration">Advanced Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-validation">Configuration Validation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#module-search_flow.main">Search Flow Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState"><code class="docutils literal notranslate"><span class="pre">SearchState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.question"><code class="docutils literal notranslate"><span class="pre">SearchState.question</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.type"><code class="docutils literal notranslate"><span class="pre">SearchState.type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.result"><code class="docutils literal notranslate"><span class="pre">SearchState.result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.raw_results"><code class="docutils literal notranslate"><span class="pre">SearchState.raw_results</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.summary"><code class="docutils literal notranslate"><span class="pre">SearchState.summary</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.model_config"><code class="docutils literal notranslate"><span class="pre">SearchState.model_config</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow"><code class="docutils literal notranslate"><span class="pre">SearchFlow</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.rag_crew"><code class="docutils literal notranslate"><span class="pre">SearchFlow.rag_crew</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.search_crew"><code class="docutils literal notranslate"><span class="pre">SearchFlow.search_crew</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.detect_field"><code class="docutils literal notranslate"><span class="pre">SearchFlow.detect_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.route_field"><code class="docutils literal notranslate"><span class="pre">SearchFlow.route_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.rag"><code class="docutils literal notranslate"><span class="pre">SearchFlow.rag()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.run_research"><code class="docutils literal notranslate"><span class="pre">SearchFlow.run_research()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.run_summary"><code class="docutils literal notranslate"><span class="pre">SearchFlow.run_summary()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.main.kickoff"><code class="docutils literal notranslate"><span class="pre">kickoff()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.main.plot"><code class="docutils literal notranslate"><span class="pre">plot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search-state">Search State</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#id0"><code class="docutils literal notranslate"><span class="pre">SearchState</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search-flow">Search Flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#id7"><code class="docutils literal notranslate"><span class="pre">SearchFlow</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#crews-module">Crews Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#module-search_flow.crews.rag_crew.rag_crew">RAG Crew</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.crews.rag_crew.rag_crew.RAGCrew"><code class="docutils literal notranslate"><span class="pre">RAGCrew</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#module-search_flow.crews.search_crew.search_crew">Search Crew</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.crews.search_crew.search_crew.SearchCrew"><code class="docutils literal notranslate"><span class="pre">SearchCrew</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#tools-module">Tools Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#module-search_flow.tools.rag">RAG Tool</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.tools.rag.Settings"><code class="docutils literal notranslate"><span class="pre">Settings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.tools.rag.RAG"><code class="docutils literal notranslate"><span class="pre">RAG</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#module-search_flow.tools.ddg_search">DuckDuckGo Search Tool</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.tools.ddg_search.DDGSearch"><code class="docutils literal notranslate"><span class="pre">DDGSearch</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.crews.utils.build_sequential_crew"><code class="docutils literal notranslate"><span class="pre">build_sequential_crew()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#configuration-loading">Configuration Loading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#agent-creation">Agent Creation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#task-creation">Task Creation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#class-diagrams">Class Diagrams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search-flow-architecture">Search Flow Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#tool-hierarchy">Tool Hierarchy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#method-reference">Method Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#searchflow-methods">SearchFlow Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#ragtool-methods">RAGTool Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#duckduckgosearchtool-methods">DuckDuckGoSearchTool Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#data-models">Data Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#searchstate-fields">SearchState Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#configuration-schemas">Configuration Schemas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#agent-configuration-schema">Agent Configuration Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#task-configuration-schema">Task Configuration Schema</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#error-handling">Error Handling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#common-exceptions">Common Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#error-handling-patterns">Error Handling Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#logging-and-debugging">Logging and Debugging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#logging-configuration">Logging Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#debug-information">Debug Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#performance-monitoring">Performance Monitoring</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#timing-decorators">Timing Decorators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#memory-usage-monitoring">Memory Usage Monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#testing-and-validation">Testing and Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#unit-testing">Unit Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#integration-testing">Integration Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#mock-testing">Mock Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples and Use Cases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#basic-usage-examples">Basic Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#simple-medical-query">Simple Medical Query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#simple-web-query">Simple Web Query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#interactive-session">Interactive Session</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#advanced-usage-examples">Advanced Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#custom-rag-crew">Custom RAG Crew</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#custom-search-crew">Custom Search Crew</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#custom-tools">Custom Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#integration-examples">Integration Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#flask-web-application">Flask Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#fastapi-application">FastAPI Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#batch-processing">Batch Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#custom-configuration-examples">Custom Configuration Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#environment-specific-configuration">Environment-Specific Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#dynamic-configuration-loading">Dynamic Configuration Loading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#testing-examples">Testing Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#unit-tests">Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#integration-tests">Integration Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#performance-testing">Performance Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Development Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#development-environment-setup">Development Environment Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initial-setup">Initial Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code-style-and-standards">Code Style and Standards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#python-style-guide">Python Style Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-formatting">Code Formatting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-guidelines">Testing Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#test-structure">Test Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-tests">Writing Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-tests">Running Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#extending-the-system">Extending the System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#adding-new-tools">Adding New Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-new-agents">Adding New Agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adding-new-search-types">Adding New Search Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-management">Configuration Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#environment-specific-configs">Environment-Specific Configs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-configuration">Dynamic Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-optimization">Performance Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#profiling-and-monitoring">Profiling and Monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#caching-strategies">Caching Strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#error-handling-and-logging">Error Handling and Logging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#custom-exceptions">Custom Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#structured-logging">Structured Logging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#debugging-tools">Debugging Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#interactive-debugging">Interactive Debugging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#development-workflow">Development Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#feature-development">Feature Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-review-process">Code Review Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#continuous-integration">Continuous Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#how-to-contribute">How to Contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#development-workflow">Development Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#coding-standards">Coding Standards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#python-style-guide">Python Style Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#import-organization">Import Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#naming-conventions">Naming Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#testing-guidelines">Testing Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#test-structure">Test Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#test-fixtures">Test Fixtures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#running-tests">Running Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#documentation-standards">Documentation Standards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#documentation-structure">Documentation Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#docstring-format">Docstring Format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#pull-request-guidelines">Pull Request Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#before-submitting">Before Submitting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#pull-request-template">Pull Request Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#code-review-process">Code Review Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#review-checklist">Review Checklist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#review-comments">Review Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#issue-reporting">Issue Reporting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#bug-reports">Bug Reports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#feature-requests">Feature Requests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#community-guidelines">Community Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#code-of-conduct">Code of Conduct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#communication-channels">Communication Channels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#recognition">Recognition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#contributor-recognition">Contributor Recognition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#types-of-contributions">Types of Contributions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EU AI Act Compliance:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="application_compliance.html">Application Compliance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#application-owner">Application Owner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#document-version">Document Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#reviewers">Reviewers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="application_compliance.html#general-information">General Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#purpose-and-intended-use">Purpose and Intended Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#operational-environment">Operational Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="application_compliance.html#application-functionality">Application Functionality</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#instructions-for-use-for-deployers">Instructions for Use for Deployers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#model-capabilities-and-limitations">Model Capabilities and Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#input-data-requirements">Input Data Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#output-explanation">Output Explanation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#system-architecture-overview">System Architecture Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="application_compliance.html#models-and-datasets">Models and Datasets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#models">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#datasets">Datasets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_compliance.html">Data Compliance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#known-usage-in-the-system">Known Usage in the System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#dataset-characteristics">Dataset Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#origin-and-provenance">Origin and Provenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#pre-processing-and-indexing">Pre-processing and Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#access-retention-and-distribution">Access, Retention, and Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#bias-fairness-and-safety-notes">Bias, Fairness, and Safety Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#deployer-guidance-responsible-use">Deployer Guidance (Responsible Use)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#appendix-file-pointers">Appendix: File Pointers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ai_compliance.html">Model compliance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#model-description">Model Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#version-details-and-artifacts">Version Details and Artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#intended-and-known-usage">Intended and Known Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#known-applications">Known Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#model-architecture">Model Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#data-collection-and-preprocessing">Data Collection and Preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#model-training-and-evaluation">Model Training and Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#bias-and-fairness-analysis">Bias and Fairness Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#model-interpretability-and-explainability">Model Interpretability and Explainability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#eu-declaration-of-conformity">EU Declaration of Conformity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#documentation-metadata">Documentation Metadata</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RAG Search Flow</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Development Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/development.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="development-guide">
+<h1>Development Guide<a class="headerlink" href="#development-guide" title="Link to this heading"></a></h1>
+<p>This section provides comprehensive guidance for developers who want to extend, modify, or contribute to the RAG Search Flow system.</p>
+<section id="development-environment-setup">
+<h2>Development Environment Setup<a class="headerlink" href="#development-environment-setup" title="Link to this heading"></a></h2>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Python</strong>: 3.10+ (but &lt; 3.14)</p></li>
+<li><p><strong>Git</strong>: For version control</p></li>
+<li><p><strong>UV</strong>: For dependency management</p></li>
+<li><p><strong>IDE</strong>: VS Code, PyCharm, or similar with Python support</p></li>
+</ul>
+</section>
+<section id="initial-setup">
+<h3>Initial Setup<a class="headerlink" href="#initial-setup" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p><strong>Clone the Repository</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>&lt;repository-url&gt;
+<span class="nb">cd</span><span class="w"> </span>rag_search
+</pre></div>
+</div>
+</li>
+<li><p><strong>Create Virtual Environment</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+
+<span class="c1"># Activate on Windows</span>
+venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+
+<span class="c1"># Activate on macOS/Linux</span>
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install Dependencies</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>sync
+<span class="c1"># or</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install Development Dependencies</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;.[dev]&quot;</span>
+pip<span class="w"> </span>install<span class="w"> </span>pytest<span class="w"> </span>pytest-cov<span class="w"> </span>black<span class="w"> </span>isort<span class="w"> </span>mypy
+</pre></div>
+</div>
+</li>
+<li><p><strong>Install Pre-commit Hooks</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit<span class="w"> </span>install
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="project-structure">
+<h2>Project Structure<a class="headerlink" href="#project-structure" title="Link to this heading"></a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>rag_search/
+├── src/
+│   └── search_flow/
+│       ├── __init__.py
+│       ├── main.py              # Main flow orchestration
+│       ├── crews/               # Agent crew implementations
+│       │   ├── __init__.py
+│       │   ├── rag_crew/        # Medical document search crew
+│       │   │   ├── __init__.py
+│       │   │   ├── rag_crew.py
+│       │   │   └── config/      # YAML configuration files
+│       │   │       ├── agents.yaml
+│       │   │       └── tasks.yaml
+│       │   └── search_crew/     # Web search crew
+│       │       ├── __init__.py
+│       │       ├── search_crew.py
+│       │       └── config/
+│       │           ├── agents.yaml
+│       │           └── tasks.yaml
+│       ├── tools/               # Tool implementations
+│       │   ├── __init__.py
+│       │   ├── rag.py          # RAG search tool
+│       │   └── ddg_search.py   # DuckDuckGo search tool
+│       └── utils.py            # Utility functions
+├── documents/                  # Medical documents for RAG
+├── faiss/                     # FAISS vector database
+├── tests/                     # Test suite
+├── docs/                      # Documentation
+├── config/                    # Configuration files
+├── pyproject.toml            # Project configuration
+└── README.md                 # Project overview
+</pre></div>
+</div>
+</section>
+<section id="code-style-and-standards">
+<h2>Code Style and Standards<a class="headerlink" href="#code-style-and-standards" title="Link to this heading"></a></h2>
+<section id="python-style-guide">
+<h3>Python Style Guide<a class="headerlink" href="#python-style-guide" title="Link to this heading"></a></h3>
+<p>The project follows PEP 8 with some modifications:</p>
+<ul class="simple">
+<li><p><strong>Line Length</strong>: 120 characters maximum</p></li>
+<li><p><strong>Import Order</strong>: Standard library, third-party, local</p></li>
+<li><p><strong>Type Hints</strong>: Required for all public functions</p></li>
+<li><p><strong>Docstrings</strong>: Google-style docstrings for all public functions</p></li>
+</ul>
+</section>
+<section id="code-formatting">
+<h3>Code Formatting<a class="headerlink" href="#code-formatting" title="Link to this heading"></a></h3>
+<p>Use the provided tools for consistent formatting:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Format code with black</span>
+black<span class="w"> </span>src/<span class="w"> </span>tests/
+
+<span class="c1"># Sort imports with isort</span>
+isort<span class="w"> </span>src/<span class="w"> </span>tests/
+
+<span class="c1"># Check types with mypy</span>
+mypy<span class="w"> </span>src/
+</pre></div>
+</div>
+<p>Example Code Style:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;RAG Search Tool implementation.</span>
+
+<span class="sd">This module provides the RAGTool class for searching medical documents</span>
+<span class="sd">using vector similarity search with FAISS.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">faiss</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">crewai.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseTool</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RAGTool</span><span class="p">(</span><span class="n">BaseTool</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tool for searching medical documents using RAG.&quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;rag_search_tool&quot;</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Search medical documents using vector similarity&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute the RAG search.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query: The search query string.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Search results as a formatted string.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            DocumentIndexError: If the document index is not available.</span>
+<span class="sd">            SearchError: If the search operation fails.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid query input&quot;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Implementation here</span>
+            <span class="k">return</span> <span class="s2">&quot;Search results&quot;</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SearchError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Search failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate the input query.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query: The query to validate.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            True if valid, False otherwise.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">query</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="testing-guidelines">
+<h2>Testing Guidelines<a class="headerlink" href="#testing-guidelines" title="Link to this heading"></a></h2>
+<section id="test-structure">
+<h3>Test Structure<a class="headerlink" href="#test-structure" title="Link to this heading"></a></h3>
+<p>Tests should be organized to mirror the source code structure:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>tests/
+├── __init__.py
+├── conftest.py              # Shared fixtures
+├── unit/                    # Unit tests
+│   ├── __init__.py
+│   ├── test_main.py
+│   ├── test_rag_crew.py
+│   ├── test_search_crew.py
+│   └── test_tools.py
+├── integration/             # Integration tests
+│   ├── __init__.py
+│   ├── test_flow.py
+│   └── test_crews.py
+└── fixtures/                # Test data and fixtures
+    ├── sample_documents/
+    └── test_configs/
+</pre></div>
+</div>
+</section>
+<section id="writing-tests">
+<h3>Writing Tests<a class="headerlink" href="#writing-tests" title="Link to this heading"></a></h3>
+<p>Follow these guidelines for writing tests:</p>
+<ol class="arabic simple">
+<li><p><strong>Test Naming</strong>: Use descriptive names that explain what is being tested</p></li>
+<li><p><strong>Arrange-Act-Assert</strong>: Structure tests with clear sections</p></li>
+<li><p><strong>Mocking</strong>: Use mocks for external dependencies</p></li>
+<li><p><strong>Coverage</strong>: Aim for high test coverage (&gt;90%)</p></li>
+<li><p><strong>Edge Cases</strong>: Test boundary conditions and error cases</p></li>
+</ol>
+<p>Example Test:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Tests for the RAGTool class.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unittest.mock</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mock</span><span class="p">,</span> <span class="n">patch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.tools.rag</span><span class="w"> </span><span class="kn">import</span> <span class="n">RAGTool</span><span class="p">,</span> <span class="n">DocumentIndexError</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestRAGTool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test suite for RAGTool.&quot;&quot;&quot;</span>
+
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rag_tool</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a RAGTool instance for testing.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">RAGTool</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_rag_tool_initialization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rag_tool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test RAG tool initialization.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">rag_tool</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;rag_search_tool&quot;</span>
+        <span class="k">assert</span> <span class="s2">&quot;medical document&quot;</span> <span class="ow">in</span> <span class="n">rag_tool</span><span class="o">.</span><span class="n">description</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_validate_input_valid_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rag_tool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test input validation with valid query.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">rag_tool</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="s2">&quot;diabetes symptoms&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_validate_input_empty_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rag_tool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test input validation with empty query.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">rag_tool</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_validate_input_none_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rag_tool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test input validation with None query.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">rag_tool</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span>
+
+    <span class="nd">@patch</span><span class="p">(</span><span class="s1">&#39;search_flow.tools.rag.faiss&#39;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_run_success</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mock_faiss</span><span class="p">,</span> <span class="n">rag_tool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test successful RAG search execution.&quot;&quot;&quot;</span>
+        <span class="c1"># Arrange</span>
+        <span class="n">mock_faiss</span><span class="o">.</span><span class="n">read_index</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+
+        <span class="c1"># Act</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">rag_tool</span><span class="o">.</span><span class="n">_run</span><span class="p">(</span><span class="s2">&quot;diabetes symptoms&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Assert</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_run_invalid_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rag_tool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test RAG search with invalid input.&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;Invalid query input&quot;</span><span class="p">):</span>
+            <span class="n">rag_tool</span><span class="o">.</span><span class="n">_run</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="running-tests">
+<h3>Running Tests<a class="headerlink" href="#running-tests" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run all tests</span>
+pytest
+
+<span class="c1"># Run with coverage</span>
+pytest<span class="w"> </span>--cov<span class="o">=</span>src/search_flow<span class="w"> </span>--cov-report<span class="o">=</span>html
+
+<span class="c1"># Run specific test file</span>
+pytest<span class="w"> </span>tests/unit/test_tools.py
+
+<span class="c1"># Run tests matching pattern</span>
+pytest<span class="w"> </span>-k<span class="w"> </span><span class="s2">&quot;test_rag_tool&quot;</span>
+
+<span class="c1"># Run tests in parallel</span>
+pytest<span class="w"> </span>-n<span class="w"> </span>auto
+</pre></div>
+</div>
+</section>
+</section>
+<section id="extending-the-system">
+<h2>Extending the System<a class="headerlink" href="#extending-the-system" title="Link to this heading"></a></h2>
+<section id="adding-new-tools">
+<h3>Adding New Tools<a class="headerlink" href="#adding-new-tools" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p><strong>Create the Tool Class</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Custom medical validation tool.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">crewai.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseTool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MedicalValidatorTool</span><span class="p">(</span><span class="n">BaseTool</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tool for validating medical information.&quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;medical_validator_tool&quot;</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Validate medical information accuracy&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">medical_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">validation_criteria</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate medical information.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            medical_text: The medical text to validate.</span>
+<span class="sd">            validation_criteria: Optional validation criteria.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Validation results and recommendations.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Implementation here</span>
+        <span class="k">return</span> <span class="s2">&quot;Validation results&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">medical_text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate input parameters.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">medical_text</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">medical_text</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Register the Tool</strong></p>
+<p>Add to the appropriate crew configuration:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">medical_expert</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Medical</span><span class="nv"> </span><span class="s">Expert&quot;</span>
+<span class="w">  </span><span class="nt">tools</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;rag_search_tool&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;medical_validator_tool&quot;</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Import in Crew</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.tools.medical_validator</span><span class="w"> </span><span class="kn">import</span> <span class="n">MedicalValidatorTool</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RAGCrew</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># ... existing code ...</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">medical_validator_tool</span> <span class="o">=</span> <span class="n">MedicalValidatorTool</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="adding-new-agents">
+<h3>Adding New Agents<a class="headerlink" href="#adding-new-agents" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p><strong>Define Agent Configuration</strong></p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">specialized_agent</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Specialized</span><span class="nv"> </span><span class="s">Medical</span><span class="nv"> </span><span class="s">Agent&quot;</span>
+<span class="w">  </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Expert</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">medical</span><span class="nv"> </span><span class="s">field&quot;</span>
+<span class="w">  </span><span class="nt">goal</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Provide</span><span class="nv"> </span><span class="s">specialized</span><span class="nv"> </span><span class="s">medical</span><span class="nv"> </span><span class="s">information&quot;</span>
+<span class="w">  </span><span class="nt">backstory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Specialized</span><span class="nv"> </span><span class="s">background</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">expertise&quot;</span>
+<span class="w">  </span><span class="nt">verbose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">allow_delegation</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">tools</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;rag_search_tool&quot;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="s">&quot;specialized_tool&quot;</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Create Agent Method</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">specialized_agent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Agent</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a specialized medical agent.&quot;&quot;&quot;</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;agents&quot;</span><span class="p">][</span><span class="s2">&quot;specialized_agent&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">Agent</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Add to Crew Workflow</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">specialized_search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute specialized medical search.&quot;&quot;&quot;</span>
+    <span class="n">agent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">specialized_agent</span><span class="p">()</span>
+    <span class="n">task</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">specialized_search_task</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">agent</span><span class="o">.</span><span class="n">execute_task</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">query</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="adding-new-search-types">
+<h3>Adding New Search Types<a class="headerlink" href="#adding-new-search-types" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p><strong>Extend Intent Detection</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@start</span><span class="p">()</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">detect_field</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># ... existing code ...</span>
+
+    <span class="c1"># Add new intent types</span>
+    <span class="k">if</span> <span class="s2">&quot;specialized&quot;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+        <span class="k">return</span> <span class="s1">&#39;specialized&#39;</span>
+
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Add New Route</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@listen</span><span class="p">(</span><span class="s1">&#39;specialized&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">specialized_search</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute specialized search.&quot;&quot;&quot;</span>
+    <span class="c1"># Implementation here</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Update Routing Logic</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@router</span><span class="p">(</span><span class="n">detect_field</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">route_field</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># ... existing code ...</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;specialized&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;specialized&#39;</span>
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="configuration-management">
+<h2>Configuration Management<a class="headerlink" href="#configuration-management" title="Link to this heading"></a></h2>
+<section id="environment-specific-configs">
+<h3>Environment-Specific Configs<a class="headerlink" href="#environment-specific-configs" title="Link to this heading"></a></h3>
+<p>Create configuration files for different environments:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># config/development.yaml</span>
+<span class="nt">system</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">log_level</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DEBUG&quot;</span>
+<span class="w">  </span><span class="nt">verbose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">cache_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="nt">agents</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">document_searcher</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">verbose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">max_iter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+</pre></div>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># config/production.yaml</span>
+<span class="nt">system</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">log_level</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;WARNING&quot;</span>
+<span class="w">  </span><span class="nt">verbose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">cache_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="nt">agents</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">document_searcher</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">verbose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">max_iter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+</pre></div>
+</div>
+</section>
+<section id="dynamic-configuration">
+<h3>Dynamic Configuration<a class="headerlink" href="#dynamic-configuration" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Configuration manager for dynamic settings.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ConfigManager</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Manages configuration loading and merging.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;config&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">config_dir</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">environment</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load configuration for a specific environment.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">environment</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">environment</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;ENVIRONMENT&quot;</span><span class="p">,</span> <span class="s2">&quot;development&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Load base configuration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_load_base_config</span><span class="p">()</span>
+
+        <span class="c1"># Load environment-specific configuration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_load_environment_config</span><span class="p">(</span><span class="n">environment</span><span class="p">)</span>
+
+        <span class="c1"># Override with environment variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_override_from_env</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_load_base_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load base configuration file.&quot;&quot;&quot;</span>
+        <span class="n">base_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span> <span class="o">/</span> <span class="s2">&quot;base.yaml&quot;</span>
+        <span class="k">if</span> <span class="n">base_config</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">base_config</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_load_environment_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">environment</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load environment-specific configuration.&quot;&quot;&quot;</span>
+        <span class="n">env_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">environment</span><span class="si">}</span><span class="s2">.yaml&quot;</span>
+        <span class="k">if</span> <span class="n">env_config</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">env_config</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">env_settings</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_merge_config</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="n">env_settings</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_merge_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">override</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Recursively merge configuration dictionaries.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">override</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">base</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">base</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_merge_config</span><span class="p">(</span><span class="n">base</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">value</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">base</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="performance-optimization">
+<h2>Performance Optimization<a class="headerlink" href="#performance-optimization" title="Link to this heading"></a></h2>
+<section id="profiling-and-monitoring">
+<h3>Profiling and Monitoring<a class="headerlink" href="#profiling-and-monitoring" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p><strong>Use cProfile for Performance Analysis</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">cProfile</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pstats</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">SearchFlow</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">profile_search_flow</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Profile the search flow performance.&quot;&quot;&quot;</span>
+    <span class="n">profiler</span> <span class="o">=</span> <span class="n">cProfile</span><span class="o">.</span><span class="n">Profile</span><span class="p">()</span>
+    <span class="n">profiler</span><span class="o">.</span><span class="n">enable</span><span class="p">()</span>
+
+    <span class="c1"># Run the search flow</span>
+    <span class="n">flow</span> <span class="o">=</span> <span class="n">SearchFlow</span><span class="p">()</span>
+    <span class="n">flow</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">question</span> <span class="o">=</span> <span class="s2">&quot;What are diabetes symptoms?&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">detect_field</span><span class="p">()</span>
+
+    <span class="n">profiler</span><span class="o">.</span><span class="n">disable</span><span class="p">()</span>
+
+    <span class="c1"># Save stats to file</span>
+    <span class="n">stats</span> <span class="o">=</span> <span class="n">pstats</span><span class="o">.</span><span class="n">Stats</span><span class="p">(</span><span class="n">profiler</span><span class="p">)</span>
+    <span class="n">stats</span><span class="o">.</span><span class="n">sort_stats</span><span class="p">(</span><span class="s1">&#39;cumulative&#39;</span><span class="p">)</span>
+    <span class="n">stats</span><span class="o">.</span><span class="n">print_stats</span><span class="p">()</span>
+    <span class="n">stats</span><span class="o">.</span><span class="n">dump_stats</span><span class="p">(</span><span class="s1">&#39;search_flow_profile.prof&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Memory Usage Monitoring</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">psutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.tools.rag</span><span class="w"> </span><span class="kn">import</span> <span class="n">RAGTool</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">monitor_memory_usage</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Monitor memory usage during RAG operations.&quot;&quot;&quot;</span>
+    <span class="n">process</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getpid</span><span class="p">())</span>
+
+    <span class="c1"># Memory before operation</span>
+    <span class="n">memory_before</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">memory_info</span><span class="p">()</span><span class="o">.</span><span class="n">rss</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span>  <span class="c1"># MB</span>
+
+    <span class="c1"># Perform RAG operation</span>
+    <span class="n">rag_tool</span> <span class="o">=</span> <span class="n">RAGTool</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">rag_tool</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;diabetes symptoms&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Memory after operation</span>
+    <span class="n">memory_after</span> <span class="o">=</span> <span class="n">process</span><span class="o">.</span><span class="n">memory_info</span><span class="p">()</span><span class="o">.</span><span class="n">rss</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span>  <span class="c1"># MB</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Memory used: </span><span class="si">{</span><span class="n">memory_after</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">memory_before</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MB&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="caching-strategies">
+<h3>Caching Strategies<a class="headerlink" href="#caching-strategies" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p><strong>Result Caching</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Caching decorator for search results.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">functools</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">cache_results</span><span class="p">(</span><span class="n">max_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cache decorator for search results.&quot;&quot;&quot;</span>
+    <span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">:</span>
+        <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="c1"># Create cache key</span>
+            <span class="n">key_data</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+            <span class="n">cache_key</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">key_data</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+            <span class="c1"># Check cache</span>
+            <span class="k">if</span> <span class="n">cache_key</span> <span class="ow">in</span> <span class="n">cache</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span>
+
+            <span class="c1"># Execute function and cache result</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+            <span class="c1"># Manage cache size</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cache</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">max_size</span><span class="p">:</span>
+                <span class="c1"># Remove oldest entry</span>
+                <span class="n">oldest_key</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">cache</span><span class="p">))</span>
+                <span class="k">del</span> <span class="n">cache</span><span class="p">[</span><span class="n">oldest_key</span><span class="p">]</span>
+
+            <span class="n">cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
+            <span class="k">return</span> <span class="n">result</span>
+
+        <span class="k">return</span> <span class="n">wrapper</span>
+    <span class="k">return</span> <span class="n">decorator</span>
+
+<span class="c1"># Usage</span>
+<span class="nd">@cache_results</span><span class="p">(</span><span class="n">max_size</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">search_medical_documents</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="c1"># Expensive search operation</span>
+    <span class="k">return</span> <span class="s2">&quot;Search results&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>FAISS Index Caching</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;FAISS index caching for improved performance.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">faiss</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CachedFAISSIndex</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cached FAISS index for document search.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">cache_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;cache&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">index_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">index_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">cache_dir</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache_dir</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">faiss</span><span class="o">.</span><span class="n">Index</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">faiss</span><span class="o">.</span><span class="n">Index</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get cached FAISS index.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_load_index</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_load_index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">faiss</span><span class="o">.</span><span class="n">Index</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load FAISS index with caching.&quot;&quot;&quot;</span>
+        <span class="n">cache_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">index_path</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2">_cache.pkl&quot;</span>
+
+        <span class="c1"># Check if cache exists and is newer than index</span>
+        <span class="k">if</span> <span class="n">cache_file</span><span class="o">.</span><span class="n">exists</span><span class="p">()</span> <span class="ow">and</span> <span class="n">cache_file</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_mtime</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">index_path</span><span class="o">.</span><span class="n">stat</span><span class="p">()</span><span class="o">.</span><span class="n">st_mtime</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">cache_file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+                <span class="k">pass</span>
+
+        <span class="c1"># Load from original file</span>
+        <span class="n">index</span> <span class="o">=</span> <span class="n">faiss</span><span class="o">.</span><span class="n">read_index</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">index_path</span><span class="p">))</span>
+
+        <span class="c1"># Cache the index</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">cache_file</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">pickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+        <span class="k">return</span> <span class="n">index</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="error-handling-and-logging">
+<h2>Error Handling and Logging<a class="headerlink" href="#error-handling-and-logging" title="Link to this heading"></a></h2>
+<section id="custom-exceptions">
+<h3>Custom Exceptions<a class="headerlink" href="#custom-exceptions" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Custom exceptions for the RAG Search Flow.&quot;&quot;&quot;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SearchFlowError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base exception for search flow errors.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DocumentIndexError</span><span class="p">(</span><span class="n">SearchFlowError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when document index is not available.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SearchError</span><span class="p">(</span><span class="n">SearchFlowError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when search operations fail.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ConfigurationError</span><span class="p">(</span><span class="n">SearchFlowError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Raised when configuration is invalid.&quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+</section>
+<section id="structured-logging">
+<h3>Structured Logging<a class="headerlink" href="#structured-logging" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Structured logging configuration.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">StructuredFormatter</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;JSON formatter for structured logging.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">:</span> <span class="n">logging</span><span class="o">.</span><span class="n">LogRecord</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="n">log_entry</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+            <span class="s1">&#39;level&#39;</span><span class="p">:</span> <span class="n">record</span><span class="o">.</span><span class="n">levelname</span><span class="p">,</span>
+            <span class="s1">&#39;logger&#39;</span><span class="p">:</span> <span class="n">record</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">record</span><span class="o">.</span><span class="n">getMessage</span><span class="p">(),</span>
+            <span class="s1">&#39;module&#39;</span><span class="p">:</span> <span class="n">record</span><span class="o">.</span><span class="n">module</span><span class="p">,</span>
+            <span class="s1">&#39;function&#39;</span><span class="p">:</span> <span class="n">record</span><span class="o">.</span><span class="n">funcName</span><span class="p">,</span>
+            <span class="s1">&#39;line&#39;</span><span class="p">:</span> <span class="n">record</span><span class="o">.</span><span class="n">lineno</span>
+        <span class="p">}</span>
+
+        <span class="c1"># Add extra fields if present</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="s1">&#39;extra_fields&#39;</span><span class="p">):</span>
+            <span class="n">log_entry</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">extra_fields</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">log_entry</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">setup_logging</span><span class="p">(</span><span class="n">level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;INFO&quot;</span><span class="p">,</span> <span class="n">log_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup structured logging.&quot;&quot;&quot;</span>
+    <span class="c1"># Configure root logger</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">logging</span><span class="p">,</span> <span class="n">level</span><span class="o">.</span><span class="n">upper</span><span class="p">()))</span>
+
+    <span class="c1"># Create formatter</span>
+    <span class="n">formatter</span> <span class="o">=</span> <span class="n">StructuredFormatter</span><span class="p">()</span>
+
+    <span class="c1"># Create handlers</span>
+    <span class="n">handlers</span> <span class="o">=</span> <span class="p">[</span><span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">()]</span>
+
+    <span class="k">if</span> <span class="n">log_file</span><span class="p">:</span>
+        <span class="n">file_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="n">log_file</span><span class="p">)</span>
+        <span class="n">file_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+        <span class="n">handlers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">file_handler</span><span class="p">)</span>
+
+    <span class="c1"># Configure handlers</span>
+    <span class="k">for</span> <span class="n">handler</span> <span class="ow">in</span> <span class="n">handlers</span><span class="p">:</span>
+        <span class="n">handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+    <span class="c1"># Set specific logger levels</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;search_flow&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;crewai&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="debugging-tools">
+<h2>Debugging Tools<a class="headerlink" href="#debugging-tools" title="Link to this heading"></a></h2>
+<section id="interactive-debugging">
+<h3>Interactive Debugging<a class="headerlink" href="#interactive-debugging" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p><strong>Use pdb for Interactive Debugging</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pdb</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">SearchFlow</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">debug_search_flow</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Debug the search flow interactively.&quot;&quot;&quot;</span>
+    <span class="n">flow</span> <span class="o">=</span> <span class="n">SearchFlow</span><span class="p">()</span>
+
+    <span class="c1"># Set breakpoint</span>
+    <span class="n">pdb</span><span class="o">.</span><span class="n">set_trace</span><span class="p">()</span>
+
+    <span class="c1"># Continue execution</span>
+    <span class="n">flow</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">question</span> <span class="o">=</span> <span class="s2">&quot;What are diabetes symptoms?&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">detect_field</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Remote Debugging with debugpy</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Remote debugging setup for the search flow.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">debugpy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">SearchFlow</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">setup_remote_debugging</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup remote debugging.&quot;&quot;&quot;</span>
+    <span class="n">debugpy</span><span class="o">.</span><span class="n">listen</span><span class="p">((</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="mi">5678</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Waiting for debugger to attach...&quot;</span><span class="p">)</span>
+    <span class="n">debugpy</span><span class="o">.</span><span class="n">wait_for_client</span><span class="p">()</span>
+
+    <span class="c1"># Continue with normal execution</span>
+    <span class="n">flow</span> <span class="o">=</span> <span class="n">SearchFlow</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">flow</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="development-workflow">
+<h2>Development Workflow<a class="headerlink" href="#development-workflow" title="Link to this heading"></a></h2>
+<section id="feature-development">
+<h3>Feature Development<a class="headerlink" href="#feature-development" title="Link to this heading"></a></h3>
+<ol class="arabic">
+<li><p><strong>Create Feature Branch</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/new-rag-tool
+git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>feature/new-rag-tool
+</pre></div>
+</div>
+</li>
+<li><p><strong>Implement Feature</strong></p>
+<ul class="simple">
+<li><p>Write code following style guidelines</p></li>
+<li><p>Add comprehensive tests</p></li>
+<li><p>Update documentation</p></li>
+<li><p>Update configuration files</p></li>
+</ul>
+</li>
+<li><p><strong>Test Changes</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run tests</span>
+pytest
+
+<span class="c1"># Check code style</span>
+black<span class="w"> </span>--check<span class="w"> </span>src/<span class="w"> </span>tests/
+isort<span class="w"> </span>--check-only<span class="w"> </span>src/<span class="w"> </span>tests/
+
+<span class="c1"># Type checking</span>
+mypy<span class="w"> </span>src/
+</pre></div>
+</div>
+</li>
+<li><p><strong>Create Pull Request</strong></p>
+<ul class="simple">
+<li><p>Provide clear description of changes</p></li>
+<li><p>Include test results</p></li>
+<li><p>Request code review</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="code-review-process">
+<h3>Code Review Process<a class="headerlink" href="#code-review-process" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Self-Review Checklist</strong></p>
+<ul class="simple">
+<li><p>[ ] Code follows style guidelines</p></li>
+<li><p>[ ] Tests pass and cover new functionality</p></li>
+<li><p>[ ] Documentation is updated</p></li>
+<li><p>[ ] No debugging code left in</p></li>
+<li><p>[ ] Error handling is appropriate</p></li>
+</ul>
+</li>
+<li><p><strong>Review Request</strong></p>
+<ul class="simple">
+<li><p>Clear description of changes</p></li>
+<li><p>Link to related issues</p></li>
+<li><p>Screenshots for UI changes</p></li>
+<li><p>Performance impact assessment</p></li>
+</ul>
+</li>
+<li><p><strong>Review Feedback</strong></p>
+<ul class="simple">
+<li><p>Address all review comments</p></li>
+<li><p>Update code as needed</p></li>
+<li><p>Re-run tests after changes</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="continuous-integration">
+<h3>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Link to this heading"></a></h3>
+<p>The project uses GitHub Actions for CI/CD:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># .github/workflows/ci.yml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI</span>
+
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">strategy</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">matrix</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">3.10</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.11</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.12</span><span class="p p-Indicator">]</span>
+
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Set up Python ${{ matrix.python-version }}</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v4</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ matrix.python-version }}</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">python -m pip install --upgrade pip</span>
+<span class="w">        </span><span class="no">pip install -e &quot;.[dev]&quot;</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run tests</span>
+<span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">        </span><span class="no">pytest --cov=src/search_flow --cov-report=xml</span>
+
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Upload coverage</span>
+<span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">codecov/codecov-action@v3</span>
+<span class="w">      </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./coverage.xml</span>
+</pre></div>
+</div>
+<p>For contribution guidelines, see the <a class="reference internal" href="contributing.html"><span class="doc">Contributing Guidelines</span></a> section.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="examples.html" class="btn btn-neutral float-left" title="Examples and Use Cases" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing Guidelines" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Manuel e Anna.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

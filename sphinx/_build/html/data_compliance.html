@@ -1,0 +1,600 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Compliance &mdash; RAG Search Flow 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Model compliance" href="ai_compliance.html" />
+    <link rel="prev" title="Application Compliance" href="application_compliance.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            RAG Search Flow
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-steps">Installation Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#virtual-environment-setup">Virtual Environment Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#development-installation">Development Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#example-session">Example Session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#advanced-features">Advanced Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core Components:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="search_flow.html">Search Flow Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#architecture-diagram">Architecture Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#core-components">Core Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="search_flow.html#searchstate">SearchState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_flow.html#searchflow">SearchFlow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#flow-steps">Flow Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#intent-detection">Intent Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#routing-logic">Routing Logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#state-management">State Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#extending-the-flow">Extending the Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#integration-points">Integration Points</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="crews.html">Crews System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#rag-crew">RAG Crew</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="crews.html#components">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crews.html#workflow">Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#search-crew">Search Crew</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="crews.html#id1">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crews.html#id2">Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#crew-collaboration">Crew Collaboration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#agent-communication">Agent Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#customizing-crews">Customizing Crews</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#rag-tool">RAG Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#implementation">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#usage-example">Usage Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#duckduckgo-search-tool">DuckDuckGo Search Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#id1">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#id2">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#id3">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#id4">Usage Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#tool-integration">Tool Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#custom-tool-development">Custom Tool Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#tool-registration">Tool Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#monitoring-and-logging">Monitoring and Logging</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-files-structure">Configuration Files Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#agents-configuration">Agents Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#basic-agent-structure">Basic Agent Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#agent-properties">Agent Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#example-rag-crew-agents">Example RAG Crew Agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#example-search-crew-agents">Example Search Crew Agents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#tasks-configuration">Tasks Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#basic-task-structure">Basic Task Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#task-properties">Task Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#example-rag-crew-tasks">Example RAG Crew Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#example-search-crew-tasks">Example Search Crew Tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#system-configuration">System Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#configuration-file">Configuration File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#customization-examples">Customization Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#adding-a-new-agent">Adding a New Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#modifying-agent-behavior">Modifying Agent Behavior</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#advanced-configuration">Advanced Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-validation">Configuration Validation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#module-search_flow.main">Search Flow Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState"><code class="docutils literal notranslate"><span class="pre">SearchState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.question"><code class="docutils literal notranslate"><span class="pre">SearchState.question</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.type"><code class="docutils literal notranslate"><span class="pre">SearchState.type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.result"><code class="docutils literal notranslate"><span class="pre">SearchState.result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.raw_results"><code class="docutils literal notranslate"><span class="pre">SearchState.raw_results</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.summary"><code class="docutils literal notranslate"><span class="pre">SearchState.summary</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.model_config"><code class="docutils literal notranslate"><span class="pre">SearchState.model_config</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow"><code class="docutils literal notranslate"><span class="pre">SearchFlow</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.rag_crew"><code class="docutils literal notranslate"><span class="pre">SearchFlow.rag_crew</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.search_crew"><code class="docutils literal notranslate"><span class="pre">SearchFlow.search_crew</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.detect_field"><code class="docutils literal notranslate"><span class="pre">SearchFlow.detect_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.route_field"><code class="docutils literal notranslate"><span class="pre">SearchFlow.route_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.rag"><code class="docutils literal notranslate"><span class="pre">SearchFlow.rag()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.run_research"><code class="docutils literal notranslate"><span class="pre">SearchFlow.run_research()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.run_summary"><code class="docutils literal notranslate"><span class="pre">SearchFlow.run_summary()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.main.kickoff"><code class="docutils literal notranslate"><span class="pre">kickoff()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.main.plot"><code class="docutils literal notranslate"><span class="pre">plot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search-state">Search State</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#id0"><code class="docutils literal notranslate"><span class="pre">SearchState</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search-flow">Search Flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#id7"><code class="docutils literal notranslate"><span class="pre">SearchFlow</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#crews-module">Crews Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#module-search_flow.crews.rag_crew.rag_crew">RAG Crew</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.crews.rag_crew.rag_crew.RAGCrew"><code class="docutils literal notranslate"><span class="pre">RAGCrew</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#module-search_flow.crews.search_crew.search_crew">Search Crew</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.crews.search_crew.search_crew.SearchCrew"><code class="docutils literal notranslate"><span class="pre">SearchCrew</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#tools-module">Tools Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#module-search_flow.tools.rag">RAG Tool</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.tools.rag.Settings"><code class="docutils literal notranslate"><span class="pre">Settings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.tools.rag.RAG"><code class="docutils literal notranslate"><span class="pre">RAG</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#module-search_flow.tools.ddg_search">DuckDuckGo Search Tool</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.tools.ddg_search.DDGSearch"><code class="docutils literal notranslate"><span class="pre">DDGSearch</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.crews.utils.build_sequential_crew"><code class="docutils literal notranslate"><span class="pre">build_sequential_crew()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#configuration-loading">Configuration Loading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#agent-creation">Agent Creation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#task-creation">Task Creation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#class-diagrams">Class Diagrams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search-flow-architecture">Search Flow Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#tool-hierarchy">Tool Hierarchy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#method-reference">Method Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#searchflow-methods">SearchFlow Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#ragtool-methods">RAGTool Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#duckduckgosearchtool-methods">DuckDuckGoSearchTool Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#data-models">Data Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#searchstate-fields">SearchState Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#configuration-schemas">Configuration Schemas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#agent-configuration-schema">Agent Configuration Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#task-configuration-schema">Task Configuration Schema</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#error-handling">Error Handling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#common-exceptions">Common Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#error-handling-patterns">Error Handling Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#logging-and-debugging">Logging and Debugging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#logging-configuration">Logging Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#debug-information">Debug Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#performance-monitoring">Performance Monitoring</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#timing-decorators">Timing Decorators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#memory-usage-monitoring">Memory Usage Monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#testing-and-validation">Testing and Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#unit-testing">Unit Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#integration-testing">Integration Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#mock-testing">Mock Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples and Use Cases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#basic-usage-examples">Basic Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#simple-medical-query">Simple Medical Query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#simple-web-query">Simple Web Query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#interactive-session">Interactive Session</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#advanced-usage-examples">Advanced Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#custom-rag-crew">Custom RAG Crew</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#custom-search-crew">Custom Search Crew</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#custom-tools">Custom Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#integration-examples">Integration Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#flask-web-application">Flask Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#fastapi-application">FastAPI Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#batch-processing">Batch Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#custom-configuration-examples">Custom Configuration Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#environment-specific-configuration">Environment-Specific Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#dynamic-configuration-loading">Dynamic Configuration Loading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#testing-examples">Testing Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#unit-tests">Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#integration-tests">Integration Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#performance-testing">Performance Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="development.html#development-environment-setup">Development Environment Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#initial-setup">Initial Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#code-style-and-standards">Code Style and Standards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#python-style-guide">Python Style Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#code-formatting">Code Formatting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#testing-guidelines">Testing Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#test-structure">Test Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#running-tests">Running Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#extending-the-system">Extending the System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#adding-new-tools">Adding New Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#adding-new-agents">Adding New Agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#adding-new-search-types">Adding New Search Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#configuration-management">Configuration Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#environment-specific-configs">Environment-Specific Configs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#dynamic-configuration">Dynamic Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#performance-optimization">Performance Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#profiling-and-monitoring">Profiling and Monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#caching-strategies">Caching Strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#error-handling-and-logging">Error Handling and Logging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#custom-exceptions">Custom Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#structured-logging">Structured Logging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#debugging-tools">Debugging Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#interactive-debugging">Interactive Debugging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#development-workflow">Development Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#feature-development">Feature Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#code-review-process">Code Review Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#continuous-integration">Continuous Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#how-to-contribute">How to Contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#development-workflow">Development Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#coding-standards">Coding Standards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#python-style-guide">Python Style Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#import-organization">Import Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#naming-conventions">Naming Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#testing-guidelines">Testing Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#test-structure">Test Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#test-fixtures">Test Fixtures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#running-tests">Running Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#documentation-standards">Documentation Standards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#documentation-structure">Documentation Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#docstring-format">Docstring Format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#pull-request-guidelines">Pull Request Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#before-submitting">Before Submitting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#pull-request-template">Pull Request Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#code-review-process">Code Review Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#review-checklist">Review Checklist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#review-comments">Review Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#issue-reporting">Issue Reporting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#bug-reports">Bug Reports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#feature-requests">Feature Requests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#community-guidelines">Community Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#code-of-conduct">Code of Conduct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#communication-channels">Communication Channels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#recognition">Recognition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#contributor-recognition">Contributor Recognition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#types-of-contributions">Types of Contributions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EU AI Act Compliance:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="application_compliance.html">Application Compliance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#application-owner">Application Owner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#document-version">Document Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#reviewers">Reviewers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="application_compliance.html#general-information">General Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#purpose-and-intended-use">Purpose and Intended Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#operational-environment">Operational Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="application_compliance.html#application-functionality">Application Functionality</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#instructions-for-use-for-deployers">Instructions for Use for Deployers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#model-capabilities-and-limitations">Model Capabilities and Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#input-data-requirements">Input Data Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#output-explanation">Output Explanation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#system-architecture-overview">System Architecture Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="application_compliance.html#models-and-datasets">Models and Datasets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#models">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#datasets">Datasets</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Data Compliance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#known-usage-in-the-system">Known Usage in the System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dataset-characteristics">Dataset Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#origin-and-provenance">Origin and Provenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pre-processing-and-indexing">Pre-processing and Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#access-retention-and-distribution">Access, Retention, and Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bias-fairness-and-safety-notes">Bias, Fairness, and Safety Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deployer-guidance-responsible-use">Deployer Guidance (Responsible Use)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#appendix-file-pointers">Appendix: File Pointers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ai_compliance.html">Model compliance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#model-description">Model Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#version-details-and-artifacts">Version Details and Artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#intended-and-known-usage">Intended and Known Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#known-applications">Known Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#model-architecture">Model Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#data-collection-and-preprocessing">Data Collection and Preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#model-training-and-evaluation">Model Training and Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#bias-and-fairness-analysis">Bias and Fairness Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#model-interpretability-and-explainability">Model Interpretability and Explainability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#eu-declaration-of-conformity">EU Declaration of Conformity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#documentation-metadata">Documentation Metadata</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RAG Search Flow</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Data Compliance</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/data_compliance.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="data-compliance">
+<h1>Data Compliance<a class="headerlink" href="#data-compliance" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>This project’s retrieval-augmented generation (RAG) uses a <strong>single, local, Italian-language text file</strong> on general medicine as its knowledge source. The assistant is instructed to answer <strong>exclusively</strong> from the retrieved context and to include inline citations in the form <code class="docutils literal notranslate"><span class="pre">[source:FILE]</span></code>.</p>
+<ul class="simple">
+<li><p>Local source file: <code class="docutils literal notranslate"><span class="pre">documents\medicina_generale.txt</span></code> (loaded directly by the RAG tool).</p></li>
+<li><p>The content is an expository primer on <em>medicina generale</em> (general practice/family medicine), with sections such as history, role of the GP, prevention, patient–doctor relationship, SSN integration, chronic disease management, and telemedicine. It contains <strong>no personal data</strong> and no labels.</p></li>
+</ul>
+</section>
+<section id="known-usage-in-the-system">
+<h2>Known Usage in the System<a class="headerlink" href="#known-usage-in-the-system" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>When the routing detects a <em>medical</em> intent, the pipeline runs the <strong>RAG</strong> document search over the local knowledge and returns a cited answer. For <em>non-medical</em> intent, it performs a web search and summary (DuckDuckGo).</p></li>
+</ul>
+</section>
+<section id="dataset-characteristics">
+<h2>Dataset Characteristics<a class="headerlink" href="#dataset-characteristics" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Type:</strong> Unstructured text (Italian) on general medicine.</p></li>
+<li><p><strong>Instances/Files:</strong> Single file (loaded as one LangChain <code class="docutils literal notranslate"><span class="pre">Document</span></code> and then chunked).</p></li>
+<li><p><strong>Labels/Targets:</strong> None (knowledge-only, used for retrieval/grounding).</p></li>
+<li><p><strong>Personal or special-category data:</strong> None observed in the source text.</p></li>
+<li><p><strong>Primary use:</strong> Local knowledge base for RAG answers to medicine-related questions (answers restricted to retrieved context and cited).</p></li>
+</ul>
+</section>
+<section id="origin-and-provenance">
+<h2>Origin and Provenance<a class="headerlink" href="#origin-and-provenance" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Source:</strong> Internally authored synthetic text (generated with ChatGPT, per team note) and stored locally as <code class="docutils literal notranslate"><span class="pre">documents\medicina_generale.txt</span></code>. (Team statement)</p></li>
+<li><p><strong>Third-party data:</strong> Not used (no external datasets referenced in code for the medical knowledge path). Loading is from local filesystem.</p></li>
+<li><p><strong>Geographic/temporal scope:</strong> General informational content; not tied to individuals or time-stamped records.</p></li>
+</ul>
+</section>
+<section id="pre-processing-and-indexing">
+<h2>Pre-processing and Indexing<a class="headerlink" href="#pre-processing-and-indexing" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Loading:</strong> Read as UTF-8 and wrapped into a single LangChain <code class="docutils literal notranslate"><span class="pre">Document</span></code> with <code class="docutils literal notranslate"><span class="pre">metadata['source']</span> <span class="pre">=</span> <span class="pre">path</span></code>.</p></li>
+<li><p><strong>Chunking:</strong> Recursive splitting with <strong>chunk_size = 1500</strong> and <strong>chunk_overlap = 300</strong> (see <code class="docutils literal notranslate"><span class="pre">Settings</span></code>), to optimize retrieval.</p></li>
+<li><p><strong>Vector store:</strong> FAISS index persisted under the <code class="docutils literal notranslate"><span class="pre">faiss/</span></code> directory; if present, it is reloaded on startup.</p></li>
+<li><p><strong>Retrieval:</strong> Configurable <strong>MMR</strong> (default) or similarity search; typical kwargs include <code class="docutils literal notranslate"><span class="pre">k</span></code>, <code class="docutils literal notranslate"><span class="pre">fetch_k</span></code>, and <code class="docutils literal notranslate"><span class="pre">lambda_mult</span></code>.</p></li>
+<li><p><strong>Prompting constraints:</strong> The system prompt mandates: answer in Italian; <strong>use only the provided context</strong>; <strong>always include citations</strong> in <code class="docutils literal notranslate"><span class="pre">[source:...]</span></code> format; state when information is not in context.</p></li>
+</ul>
+</section>
+<section id="access-retention-and-distribution">
+<h2>Access, Retention, and Distribution<a class="headerlink" href="#access-retention-and-distribution" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Access path:</strong> Local file system (<code class="docutils literal notranslate"><span class="pre">documents\medicina_generale.txt</span></code>). No remote fetching for the medical knowledge path.</p></li>
+<li><p><strong>Derived artefacts:</strong> FAISS index files (<code class="docutils literal notranslate"><span class="pre">index.faiss</span></code>, <code class="docutils literal notranslate"><span class="pre">index.pkl</span></code>) persisted in <code class="docutils literal notranslate"><span class="pre">faiss/</span></code>.</p></li>
+<li><p><strong>Distribution/licensing:</strong> Internal project asset; not redistributed by the codebase.</p></li>
+</ul>
+</section>
+<section id="bias-fairness-and-safety-notes">
+<h2>Bias, Fairness, and Safety Notes<a class="headerlink" href="#bias-fairness-and-safety-notes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Team review:</strong> You report that a manual review found <strong>no bias or discriminatory content</strong> in the dataset (neutral, educational tone). The RAG chain further constrains outputs to the dataset content and requires explicit citations, which reduces the risk of unsupported or harmful claims. (Team statement)</p></li>
+</ul>
+</section>
+<section id="deployer-guidance-responsible-use">
+<h2>Deployer Guidance (Responsible Use)<a class="headerlink" href="#deployer-guidance-responsible-use" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Answers must remain within the retrieved context; if something is <strong>not</strong> in the text, the assistant should state that explicitly. Keep the medical scope to general information—<strong>no personal advice</strong>, diagnoses, or treatment decisions are contained in the dataset.</p></li>
+</ul>
+</section>
+<section id="appendix-file-pointers">
+<h2>Appendix: File Pointers<a class="headerlink" href="#appendix-file-pointers" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Knowledge file: <code class="docutils literal notranslate"><span class="pre">documents\medicina_generale.txt</span></code> (loaded in RAG tool).</p></li>
+<li><p>RAG tool (loading/chunking/retrieval/prompting/citations): <code class="docutils literal notranslate"><span class="pre">search_flow/tools/rag.py</span></code>.</p></li>
+<li><p>Flow routing (medical vs other): <code class="docutils literal notranslate"><span class="pre">main.py</span></code> (SearchFlow).</p></li>
+<li><p>Web search path (non-medical): <code class="docutils literal notranslate"><span class="pre">search_flow/tools/ddg_search.py</span></code> and <code class="docutils literal notranslate"><span class="pre">search_flow/crews/search_crew.py</span></code>.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="application_compliance.html" class="btn btn-neutral float-left" title="Application Compliance" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ai_compliance.html" class="btn btn-neutral float-right" title="Model compliance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Manuel e Anna.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

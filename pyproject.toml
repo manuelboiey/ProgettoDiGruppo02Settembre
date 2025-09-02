@@ -1,0 +1,61 @@
+[project]
+name = "search_flow"
+version = "0.1.0"
+description = "search_flow using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[tools]>=0.165.1,<1.0.0",
+    "ddgs>=9.5.4",
+    "faiss-cpu>=1.12.0",
+    "langchain-huggingface>=0.3.1",
+]
+
+[project.scripts]
+kickoff = "search_flow.main:kickoff"
+run_crew = "search_flow.main:kickoff"
+plot = "search_flow.main:plot"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "flow"
+
+[tool.pylint.main]
+load-plugins = []
+jobs = 0
+py-version = "3.10"
+unsafe-load-any-extension = false
+init-hook = "import sys, os; sys.path.append(os.path.join(os.getcwd(), 'src'))"
+
+[tool.pylint.basic]
+good-names = [
+    "i",
+    "j",
+    "k",
+    "ex",
+    "Run",
+]
+
+[tool.pylint.format]
+max-line-length = 120
+
+[tool.pylint.messages_control]
+disable = [
+    "too-few-public-methods",
+    "too-many-arguments",
+    "duplicate-code",
+    "arguments-differ",
+    "import-error",
+    "unused-argument",
+    "no-member",
+    "trailing-whitespace",
+    "line-too-long",
+    "ungrouped-imports",
+    "too-many-instance-attributes",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

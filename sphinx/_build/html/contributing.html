@@ -1,0 +1,1170 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contributing Guidelines &mdash; RAG Search Flow 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Application Compliance" href="application_compliance.html" />
+    <link rel="prev" title="Development Guide" href="development.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            RAG Search Flow
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-steps">Installation Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#virtual-environment-setup">Virtual Environment Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#development-installation">Development Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#example-session">Example Session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#advanced-features">Advanced Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core Components:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="search_flow.html">Search Flow Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#architecture-diagram">Architecture Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#core-components">Core Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="search_flow.html#searchstate">SearchState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_flow.html#searchflow">SearchFlow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#flow-steps">Flow Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#intent-detection">Intent Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#routing-logic">Routing Logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#state-management">State Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#extending-the-flow">Extending the Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#integration-points">Integration Points</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="crews.html">Crews System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#rag-crew">RAG Crew</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="crews.html#components">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crews.html#workflow">Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#search-crew">Search Crew</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="crews.html#id1">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crews.html#id2">Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#crew-collaboration">Crew Collaboration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#agent-communication">Agent Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#customizing-crews">Customizing Crews</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#rag-tool">RAG Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#implementation">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#usage-example">Usage Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#duckduckgo-search-tool">DuckDuckGo Search Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#id1">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#id2">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#id3">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#id4">Usage Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#tool-integration">Tool Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#custom-tool-development">Custom Tool Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#tool-registration">Tool Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#monitoring-and-logging">Monitoring and Logging</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-files-structure">Configuration Files Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#agents-configuration">Agents Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#basic-agent-structure">Basic Agent Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#agent-properties">Agent Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#example-rag-crew-agents">Example RAG Crew Agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#example-search-crew-agents">Example Search Crew Agents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#tasks-configuration">Tasks Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#basic-task-structure">Basic Task Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#task-properties">Task Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#example-rag-crew-tasks">Example RAG Crew Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#example-search-crew-tasks">Example Search Crew Tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#system-configuration">System Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#configuration-file">Configuration File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#customization-examples">Customization Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#adding-a-new-agent">Adding a New Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#modifying-agent-behavior">Modifying Agent Behavior</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#advanced-configuration">Advanced Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-validation">Configuration Validation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#module-search_flow.main">Search Flow Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState"><code class="docutils literal notranslate"><span class="pre">SearchState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.question"><code class="docutils literal notranslate"><span class="pre">SearchState.question</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.type"><code class="docutils literal notranslate"><span class="pre">SearchState.type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.result"><code class="docutils literal notranslate"><span class="pre">SearchState.result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.raw_results"><code class="docutils literal notranslate"><span class="pre">SearchState.raw_results</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.summary"><code class="docutils literal notranslate"><span class="pre">SearchState.summary</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.model_config"><code class="docutils literal notranslate"><span class="pre">SearchState.model_config</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow"><code class="docutils literal notranslate"><span class="pre">SearchFlow</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.rag_crew"><code class="docutils literal notranslate"><span class="pre">SearchFlow.rag_crew</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.search_crew"><code class="docutils literal notranslate"><span class="pre">SearchFlow.search_crew</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.detect_field"><code class="docutils literal notranslate"><span class="pre">SearchFlow.detect_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.route_field"><code class="docutils literal notranslate"><span class="pre">SearchFlow.route_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.rag"><code class="docutils literal notranslate"><span class="pre">SearchFlow.rag()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.run_research"><code class="docutils literal notranslate"><span class="pre">SearchFlow.run_research()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.run_summary"><code class="docutils literal notranslate"><span class="pre">SearchFlow.run_summary()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.main.kickoff"><code class="docutils literal notranslate"><span class="pre">kickoff()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.main.plot"><code class="docutils literal notranslate"><span class="pre">plot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search-state">Search State</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#id0"><code class="docutils literal notranslate"><span class="pre">SearchState</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search-flow">Search Flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#id7"><code class="docutils literal notranslate"><span class="pre">SearchFlow</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#crews-module">Crews Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#module-search_flow.crews.rag_crew.rag_crew">RAG Crew</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.crews.rag_crew.rag_crew.RAGCrew"><code class="docutils literal notranslate"><span class="pre">RAGCrew</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#module-search_flow.crews.search_crew.search_crew">Search Crew</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.crews.search_crew.search_crew.SearchCrew"><code class="docutils literal notranslate"><span class="pre">SearchCrew</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#tools-module">Tools Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#module-search_flow.tools.rag">RAG Tool</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.tools.rag.Settings"><code class="docutils literal notranslate"><span class="pre">Settings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.tools.rag.RAG"><code class="docutils literal notranslate"><span class="pre">RAG</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#module-search_flow.tools.ddg_search">DuckDuckGo Search Tool</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.tools.ddg_search.DDGSearch"><code class="docutils literal notranslate"><span class="pre">DDGSearch</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.crews.utils.build_sequential_crew"><code class="docutils literal notranslate"><span class="pre">build_sequential_crew()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#configuration-loading">Configuration Loading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#agent-creation">Agent Creation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#task-creation">Task Creation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#class-diagrams">Class Diagrams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search-flow-architecture">Search Flow Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#tool-hierarchy">Tool Hierarchy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#method-reference">Method Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#searchflow-methods">SearchFlow Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#ragtool-methods">RAGTool Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#duckduckgosearchtool-methods">DuckDuckGoSearchTool Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#data-models">Data Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#searchstate-fields">SearchState Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#configuration-schemas">Configuration Schemas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#agent-configuration-schema">Agent Configuration Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#task-configuration-schema">Task Configuration Schema</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#error-handling">Error Handling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#common-exceptions">Common Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#error-handling-patterns">Error Handling Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#logging-and-debugging">Logging and Debugging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#logging-configuration">Logging Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#debug-information">Debug Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#performance-monitoring">Performance Monitoring</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#timing-decorators">Timing Decorators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#memory-usage-monitoring">Memory Usage Monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#testing-and-validation">Testing and Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#unit-testing">Unit Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#integration-testing">Integration Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#mock-testing">Mock Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples and Use Cases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#basic-usage-examples">Basic Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#simple-medical-query">Simple Medical Query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#simple-web-query">Simple Web Query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#interactive-session">Interactive Session</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#advanced-usage-examples">Advanced Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#custom-rag-crew">Custom RAG Crew</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#custom-search-crew">Custom Search Crew</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#custom-tools">Custom Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#integration-examples">Integration Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#flask-web-application">Flask Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#fastapi-application">FastAPI Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#batch-processing">Batch Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#custom-configuration-examples">Custom Configuration Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#environment-specific-configuration">Environment-Specific Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#dynamic-configuration-loading">Dynamic Configuration Loading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#testing-examples">Testing Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#unit-tests">Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#integration-tests">Integration Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples.html#performance-testing">Performance Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="development.html#development-environment-setup">Development Environment Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#initial-setup">Initial Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#code-style-and-standards">Code Style and Standards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#python-style-guide">Python Style Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#code-formatting">Code Formatting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#testing-guidelines">Testing Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#test-structure">Test Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#running-tests">Running Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#extending-the-system">Extending the System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#adding-new-tools">Adding New Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#adding-new-agents">Adding New Agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#adding-new-search-types">Adding New Search Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#configuration-management">Configuration Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#environment-specific-configs">Environment-Specific Configs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#dynamic-configuration">Dynamic Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#performance-optimization">Performance Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#profiling-and-monitoring">Profiling and Monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#caching-strategies">Caching Strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#error-handling-and-logging">Error Handling and Logging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#custom-exceptions">Custom Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#structured-logging">Structured Logging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#debugging-tools">Debugging Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#interactive-debugging">Interactive Debugging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#development-workflow">Development Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#feature-development">Feature Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#code-review-process">Code Review Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#continuous-integration">Continuous Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-contribute">How to Contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-workflow">Development Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#coding-standards">Coding Standards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#python-style-guide">Python Style Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#import-organization">Import Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#naming-conventions">Naming Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-guidelines">Testing Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#test-structure">Test Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#writing-tests">Writing Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test-fixtures">Test Fixtures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-tests">Running Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation-standards">Documentation Standards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#documentation-structure">Documentation Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docstring-format">Docstring Format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#pull-request-guidelines">Pull Request Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#before-submitting">Before Submitting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pull-request-template">Pull Request Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#code-review-process">Code Review Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#review-checklist">Review Checklist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#review-comments">Review Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#issue-reporting">Issue Reporting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bug-reports">Bug Reports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#feature-requests">Feature Requests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#community-guidelines">Community Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#code-of-conduct">Code of Conduct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#communication-channels">Communication Channels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#recognition">Recognition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#contributor-recognition">Contributor Recognition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#types-of-contributions">Types of Contributions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EU AI Act Compliance:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="application_compliance.html">Application Compliance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#application-owner">Application Owner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#document-version">Document Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#reviewers">Reviewers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="application_compliance.html#general-information">General Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#purpose-and-intended-use">Purpose and Intended Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#operational-environment">Operational Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="application_compliance.html#application-functionality">Application Functionality</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#instructions-for-use-for-deployers">Instructions for Use for Deployers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#model-capabilities-and-limitations">Model Capabilities and Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#input-data-requirements">Input Data Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#output-explanation">Output Explanation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#system-architecture-overview">System Architecture Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="application_compliance.html#models-and-datasets">Models and Datasets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#models">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#datasets">Datasets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_compliance.html">Data Compliance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#known-usage-in-the-system">Known Usage in the System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#dataset-characteristics">Dataset Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#origin-and-provenance">Origin and Provenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#pre-processing-and-indexing">Pre-processing and Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#access-retention-and-distribution">Access, Retention, and Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#bias-fairness-and-safety-notes">Bias, Fairness, and Safety Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#deployer-guidance-responsible-use">Deployer Guidance (Responsible Use)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#appendix-file-pointers">Appendix: File Pointers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ai_compliance.html">Model compliance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#model-description">Model Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#version-details-and-artifacts">Version Details and Artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#intended-and-known-usage">Intended and Known Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#known-applications">Known Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#model-architecture">Model Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#data-collection-and-preprocessing">Data Collection and Preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#model-training-and-evaluation">Model Training and Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#bias-and-fairness-analysis">Bias and Fairness Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#model-interpretability-and-explainability">Model Interpretability and Explainability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#eu-declaration-of-conformity">EU Declaration of Conformity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#documentation-metadata">Documentation Metadata</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RAG Search Flow</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Contributing Guidelines</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/contributing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="contributing-guidelines">
+<h1>Contributing Guidelines<a class="headerlink" href="#contributing-guidelines" title="Link to this heading"></a></h1>
+<p>Thank you for your interest in contributing to the RAG Search Flow project! This document provides guidelines and information for contributors.</p>
+<section id="how-to-contribute">
+<h2>How to Contribute<a class="headerlink" href="#how-to-contribute" title="Link to this heading"></a></h2>
+<p>There are many ways to contribute to the project:</p>
+<ul class="simple">
+<li><p><strong>Code Contributions</strong>: Bug fixes, new features, improvements</p></li>
+<li><p><strong>Documentation</strong>: Improving docs, adding examples, fixing typos</p></li>
+<li><p><strong>Testing</strong>: Writing tests, improving test coverage</p></li>
+<li><p><strong>Bug Reports</strong>: Reporting issues and suggesting improvements</p></li>
+<li><p><strong>Feature Requests</strong>: Proposing new functionality</p></li>
+<li><p><strong>Code Review</strong>: Reviewing pull requests from other contributors</p></li>
+</ul>
+</section>
+<section id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Fork the Repository</strong></p>
+<p>Visit the project repository and click the “Fork” button to create your own copy.</p>
+</li>
+<li><p><strong>Clone Your Fork</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/your-username/rag_search.git
+<span class="nb">cd</span><span class="w"> </span>rag_search
+</pre></div>
+</div>
+</li>
+<li><p><strong>Set Up Development Environment</strong></p>
+<p>Follow the setup instructions in the <a class="reference internal" href="development.html"><span class="doc">Development Guide</span></a> section.</p>
+</li>
+<li><p><strong>Create a Branch</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/your-feature-name
+<span class="c1"># or</span>
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>fix/your-bug-fix
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="development-workflow">
+<h2>Development Workflow<a class="headerlink" href="#development-workflow" title="Link to this heading"></a></h2>
+<ol class="arabic">
+<li><p><strong>Make Your Changes</strong></p>
+<ul class="simple">
+<li><p>Write clean, well-documented code</p></li>
+<li><p>Follow the project’s coding standards</p></li>
+<li><p>Add tests for new functionality</p></li>
+<li><p>Update documentation as needed</p></li>
+</ul>
+</li>
+<li><p><strong>Test Your Changes</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run the test suite</span>
+pytest
+
+<span class="c1"># Check code style</span>
+black<span class="w"> </span>--check<span class="w"> </span>src/<span class="w"> </span>tests/
+isort<span class="w"> </span>--check-only<span class="w"> </span>src/<span class="w"> </span>tests/
+
+<span class="c1"># Type checking</span>
+mypy<span class="w"> </span>src/
+</pre></div>
+</div>
+</li>
+<li><p><strong>Commit Your Changes</strong></p>
+<p>Use conventional commit messages:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat: add new medical validation tool&quot;</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;fix: resolve FAISS index loading issue&quot;</span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;docs: update installation guide&quot;</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Push and Create Pull Request</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>feature/your-feature-name
+</pre></div>
+</div>
+<p>Then create a pull request through the GitHub interface.</p>
+</li>
+</ol>
+</section>
+<section id="coding-standards">
+<h2>Coding Standards<a class="headerlink" href="#coding-standards" title="Link to this heading"></a></h2>
+<section id="python-style-guide">
+<h3>Python Style Guide<a class="headerlink" href="#python-style-guide" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Follow <strong>PEP 8</strong> with project-specific modifications</p></li>
+<li><p>Maximum line length: <strong>120 characters</strong></p></li>
+<li><p>Use <strong>type hints</strong> for all public functions</p></li>
+<li><p>Write <strong>Google-style docstrings</strong> for all public functions</p></li>
+<li><p>Use <strong>f-strings</strong> for string formatting (Python 3.6+)</p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Medical document search tool using RAG.</span>
+
+<span class="sd">This module provides the RAGTool class for searching medical documents</span>
+<span class="sd">using vector similarity search with FAISS.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">faiss</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">crewai.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseTool</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RAGTool</span><span class="p">(</span><span class="n">BaseTool</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tool for searching medical documents using RAG.&quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;rag_search_tool&quot;</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Search medical documents using vector similarity&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_results</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Execute the RAG search.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query: The search query string.</span>
+<span class="sd">            max_results: Maximum number of results to return.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Search results as a formatted string.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            DocumentIndexError: If the document index is not available.</span>
+<span class="sd">            SearchError: If the search operation fails.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="n">query</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid query input&quot;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_perform_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">max_results</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_format_results</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SearchError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Search failed: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="import-organization">
+<h3>Import Organization<a class="headerlink" href="#import-organization" title="Link to this heading"></a></h3>
+<p>Organize imports in this order:</p>
+<ol class="arabic simple">
+<li><p><strong>Standard library imports</strong></p></li>
+<li><p><strong>Third-party imports</strong></p></li>
+<li><p><strong>Local application imports</strong></p></li>
+</ol>
+<p>Separate each group with a blank line:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Example of proper import organization.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">faiss</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">crewai.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseTool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.crews.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.tools.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSearchTool</span>
+</pre></div>
+</div>
+</section>
+<section id="naming-conventions">
+<h3>Naming Conventions<a class="headerlink" href="#naming-conventions" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Classes</strong>: Use <cite>PascalCase</cite> (e.g., <cite>RAGTool</cite>, <cite>SearchFlow</cite>)</p></li>
+<li><p><strong>Functions and Methods</strong>: Use <cite>snake_case</cite> (e.g., <cite>perform_search</cite>, <cite>validate_input</cite>)</p></li>
+<li><p><strong>Variables</strong>: Use <cite>snake_case</cite> (e.g., <cite>search_results</cite>, <cite>max_items</cite>)</p></li>
+<li><p><strong>Constants</strong>: Use <cite>UPPER_SNAKE_CASE</cite> (e.g., <cite>MAX_RESULTS</cite>, <cite>DEFAULT_TIMEOUT</cite>)</p></li>
+<li><p><strong>Private Methods</strong>: Prefix with underscore (e.g., <cite>_validate_input</cite>, <cite>_format_results</cite>)</p></li>
+</ul>
+</section>
+</section>
+<section id="testing-guidelines">
+<h2>Testing Guidelines<a class="headerlink" href="#testing-guidelines" title="Link to this heading"></a></h2>
+<section id="test-structure">
+<h3>Test Structure<a class="headerlink" href="#test-structure" title="Link to this heading"></a></h3>
+<p>Organize tests to mirror the source code structure:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>tests/
+├── unit/                    # Unit tests
+│   ├── test_main.py        # Tests for main.py
+│   ├── test_rag_crew.py    # Tests for RAG crew
+│   ├── test_search_crew.py # Tests for search crew
+│   └── test_tools.py       # Tests for tools
+├── integration/             # Integration tests
+│   ├── test_flow.py        # End-to-end flow tests
+│   └── test_crews.py       # Crew integration tests
+└── fixtures/                # Test data and fixtures
+    ├── sample_documents/    # Sample medical documents
+    └── test_configs/        # Test configuration files
+</pre></div>
+</div>
+</section>
+<section id="writing-tests">
+<h3>Writing Tests<a class="headerlink" href="#writing-tests" title="Link to this heading"></a></h3>
+<p>Follow these principles:</p>
+<ol class="arabic simple">
+<li><p><strong>Test Naming</strong>: Use descriptive names that explain what is being tested</p></li>
+<li><p><strong>Arrange-Act-Assert</strong>: Structure tests with clear sections</p></li>
+<li><p><strong>Mocking</strong>: Use mocks for external dependencies</p></li>
+<li><p><strong>Coverage</strong>: Aim for high test coverage (&gt;90%)</p></li>
+<li><p><strong>Edge Cases</strong>: Test boundary conditions and error cases</p></li>
+</ol>
+<p>Example Test:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Tests for the RAGTool class.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unittest.mock</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mock</span><span class="p">,</span> <span class="n">patch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.tools.rag</span><span class="w"> </span><span class="kn">import</span> <span class="n">RAGTool</span><span class="p">,</span> <span class="n">DocumentIndexError</span><span class="p">,</span> <span class="n">SearchError</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestRAGTool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test suite for RAGTool.&quot;&quot;&quot;</span>
+
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rag_tool</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a RAGTool instance for testing.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">RAGTool</span><span class="p">()</span>
+
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mock_faiss_index</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a mock FAISS index.&quot;&quot;&quot;</span>
+        <span class="n">mock_index</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+        <span class="n">mock_index</span><span class="o">.</span><span class="n">search</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">mock_index</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_rag_tool_initialization</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rag_tool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test RAG tool initialization.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">rag_tool</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;rag_search_tool&quot;</span>
+        <span class="k">assert</span> <span class="s2">&quot;medical document&quot;</span> <span class="ow">in</span> <span class="n">rag_tool</span><span class="o">.</span><span class="n">description</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_validate_input_valid_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rag_tool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test input validation with valid query.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">rag_tool</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="s2">&quot;diabetes symptoms&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">True</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_validate_input_empty_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rag_tool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test input validation with empty query.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">rag_tool</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_validate_input_none_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rag_tool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test input validation with None query.&quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">rag_tool</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">False</span>
+
+    <span class="nd">@patch</span><span class="p">(</span><span class="s1">&#39;search_flow.tools.rag.faiss&#39;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_run_success</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mock_faiss</span><span class="p">,</span> <span class="n">rag_tool</span><span class="p">,</span> <span class="n">mock_faiss_index</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test successful RAG search execution.&quot;&quot;&quot;</span>
+        <span class="c1"># Arrange</span>
+        <span class="n">mock_faiss</span><span class="o">.</span><span class="n">read_index</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">mock_faiss_index</span>
+
+        <span class="c1"># Act</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">rag_tool</span><span class="o">.</span><span class="n">_run</span><span class="p">(</span><span class="s2">&quot;diabetes symptoms&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Assert</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="n">mock_faiss</span><span class="o">.</span><span class="n">read_index</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_run_invalid_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rag_tool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test RAG search with invalid input.&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;Invalid query input&quot;</span><span class="p">):</span>
+            <span class="n">rag_tool</span><span class="o">.</span><span class="n">_run</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="nd">@patch</span><span class="p">(</span><span class="s1">&#39;search_flow.tools.rag.faiss&#39;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_run_document_index_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mock_faiss</span><span class="p">,</span> <span class="n">rag_tool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test RAG search when document index is not available.&quot;&quot;&quot;</span>
+        <span class="c1"># Arrange</span>
+        <span class="n">mock_faiss</span><span class="o">.</span><span class="n">read_index</span><span class="o">.</span><span class="n">side_effect</span> <span class="o">=</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="s2">&quot;Index not found&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Act &amp; Assert</span>
+        <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="n">DocumentIndexError</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="s2">&quot;Document index not available&quot;</span><span class="p">):</span>
+            <span class="n">rag_tool</span><span class="o">.</span><span class="n">_run</span><span class="p">(</span><span class="s2">&quot;diabetes symptoms&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="test-fixtures">
+<h3>Test Fixtures<a class="headerlink" href="#test-fixtures" title="Link to this heading"></a></h3>
+<p>Create reusable test fixtures:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Test fixtures for the RAG Search Flow.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">SearchFlow</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.tools.rag</span><span class="w"> </span><span class="kn">import</span> <span class="n">RAGTool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.tools.ddg_search</span><span class="w"> </span><span class="kn">import</span> <span class="n">DuckDuckGoSearchTool</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sample_documents</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Provide sample medical documents for testing.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="s2">&quot;Diabetes is a chronic disease that affects how your body turns food into energy.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Hypertension, or high blood pressure, is a common condition affecting blood vessels.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;Asthma is a condition that affects the airways in the lungs.&quot;</span>
+    <span class="p">]</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_config</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Provide test configuration.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;agents&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;document_searcher&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Test Document Searcher&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;Test medical document researcher&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;goal&quot;</span><span class="p">:</span> <span class="s2">&quot;Find test medical information&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">False</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="s2">&quot;tools&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;rag&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;similarity_threshold&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+                <span class="s2">&quot;max_results&quot;</span><span class="p">:</span> <span class="mi">3</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mock_llm_response</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Provide mock LLM responses for testing.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;diabetes symptoms&quot;</span><span class="p">:</span> <span class="s2">&quot;medicina&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;latest news&quot;</span><span class="p">:</span> <span class="s2">&quot;altro&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;weather forecast&quot;</span><span class="p">:</span> <span class="s2">&quot;altro&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;hypertension treatment&quot;</span><span class="p">:</span> <span class="s2">&quot;medicina&quot;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="running-tests">
+<h3>Running Tests<a class="headerlink" href="#running-tests" title="Link to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run all tests</span>
+pytest
+
+<span class="c1"># Run with coverage</span>
+pytest<span class="w"> </span>--cov<span class="o">=</span>src/search_flow<span class="w"> </span>--cov-report<span class="o">=</span>html
+
+<span class="c1"># Run specific test file</span>
+pytest<span class="w"> </span>tests/unit/test_tools.py
+
+<span class="c1"># Run tests matching pattern</span>
+pytest<span class="w"> </span>-k<span class="w"> </span><span class="s2">&quot;test_rag_tool&quot;</span>
+
+<span class="c1"># Run tests in parallel</span>
+pytest<span class="w"> </span>-n<span class="w"> </span>auto
+
+<span class="c1"># Run tests with verbose output</span>
+pytest<span class="w"> </span>-v
+
+<span class="c1"># Run tests and stop on first failure</span>
+pytest<span class="w"> </span>-x
+</pre></div>
+</div>
+</section>
+</section>
+<section id="documentation-standards">
+<h2>Documentation Standards<a class="headerlink" href="#documentation-standards" title="Link to this heading"></a></h2>
+<section id="documentation-structure">
+<h3>Documentation Structure<a class="headerlink" href="#documentation-structure" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Docstrings</strong>: Use Google-style docstrings for all public functions</p></li>
+<li><p><strong>README</strong>: Keep the main README focused and link to detailed docs</p></li>
+<li><p><strong>API Documentation</strong>: Use Sphinx autodoc for automatic generation</p></li>
+<li><p><strong>Examples</strong>: Provide practical examples for all major features</p></li>
+<li><p><strong>Tutorials</strong>: Step-by-step guides for common use cases</p></li>
+</ul>
+</section>
+<section id="docstring-format">
+<h3>Docstring Format<a class="headerlink" href="#docstring-format" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">search_medical_documents</span><span class="p">(</span>
+    <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">max_results</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="n">similarity_threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Search medical documents using vector similarity.</span>
+
+<span class="sd">    This function performs a semantic search through medical documents</span>
+<span class="sd">    using FAISS vector similarity. It returns the most relevant documents</span>
+<span class="sd">    based on the query and similarity threshold.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        query: The search query string.</span>
+<span class="sd">        max_results: Maximum number of results to return. Defaults to 5.</span>
+<span class="sd">        similarity_threshold: Minimum similarity score for results.</span>
+<span class="sd">            Defaults to 0.7.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List of dictionaries containing search results. Each dictionary</span>
+<span class="sd">        includes &#39;document_id&#39;, &#39;content&#39;, &#39;similarity_score&#39;, and</span>
+<span class="sd">        &#39;metadata&#39; fields.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        DocumentIndexError: If the document index is not available.</span>
+<span class="sd">        SearchError: If the search operation fails.</span>
+<span class="sd">        ValueError: If input parameters are invalid.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        &gt;&gt;&gt; results = search_medical_documents(&quot;diabetes symptoms&quot;, max_results=3)</span>
+<span class="sd">        &gt;&gt;&gt; for result in results:</span>
+<span class="sd">        ...     print(f&quot;Score: {result[&#39;similarity_score&#39;]}&quot;)</span>
+<span class="sd">        ...     print(f&quot;Content: {result[&#39;content&#39;][:100]}...&quot;)</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        The similarity threshold should be between 0.0 and 1.0. Higher</span>
+<span class="sd">        values result in more precise but fewer results.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="pull-request-guidelines">
+<h2>Pull Request Guidelines<a class="headerlink" href="#pull-request-guidelines" title="Link to this heading"></a></h2>
+<section id="before-submitting">
+<h3>Before Submitting<a class="headerlink" href="#before-submitting" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p><strong>Ensure Tests Pass</strong>: All tests must pass before submitting</p></li>
+<li><p><strong>Check Code Style</strong>: Run formatting tools and style checks</p></li>
+<li><p><strong>Update Documentation</strong>: Update relevant documentation</p></li>
+<li><p><strong>Add Tests</strong>: Include tests for new functionality</p></li>
+<li><p><strong>Self-Review</strong>: Review your own code before submitting</p></li>
+</ol>
+</section>
+<section id="pull-request-template">
+<h3>Pull Request Template<a class="headerlink" href="#pull-request-template" title="Link to this heading"></a></h3>
+<p>Use this template for pull requests:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gu">## Description</span>
+
+Brief description of the changes made.
+
+<span class="gu">## Type of Change</span>
+
+<span class="k">- [ ]</span> Bug fix (non-breaking change which fixes an issue)
+<span class="k">- [ ]</span> New feature (non-breaking change which adds functionality)
+<span class="k">- [ ]</span> Breaking change (fix or feature that would cause existing functionality to not work as expected)
+<span class="k">- [ ]</span> Documentation update
+<span class="k">- [ ]</span> Test addition or update
+
+<span class="gu">## Testing</span>
+
+<span class="k">- [ ]</span> All tests pass
+<span class="k">- [ ]</span> New tests added for new functionality
+<span class="k">- [ ]</span> Test coverage maintained or improved
+
+<span class="gu">## Checklist</span>
+
+<span class="k">- [ ]</span> Code follows project style guidelines
+<span class="k">- [ ]</span> Self-review completed
+<span class="k">- [ ]</span> Documentation updated
+<span class="k">- [ ]</span> No debugging code left in
+<span class="k">- [ ]</span> Error handling is appropriate
+<span class="k">- [ ]</span> Performance impact considered
+
+<span class="gu">## Related Issues</span>
+
+Fixes #(issue number)
+Related to #(issue number)
+</pre></div>
+</div>
+</section>
+</section>
+<section id="code-review-process">
+<h2>Code Review Process<a class="headerlink" href="#code-review-process" title="Link to this heading"></a></h2>
+<section id="review-checklist">
+<h3>Review Checklist<a class="headerlink" href="#review-checklist" title="Link to this heading"></a></h3>
+<p>When reviewing code, check for:</p>
+<ul class="simple">
+<li><p><strong>Functionality</strong>: Does the code do what it’s supposed to do?</p></li>
+<li><p><strong>Code Quality</strong>: Is the code clean, readable, and maintainable?</p></li>
+<li><p><strong>Testing</strong>: Are there adequate tests for the changes?</p></li>
+<li><p><strong>Documentation</strong>: Is the documentation updated and clear?</p></li>
+<li><p><strong>Performance</strong>: Are there any performance implications?</p></li>
+<li><p><strong>Security</strong>: Are there any security concerns?</p></li>
+<li><p><strong>Error Handling</strong>: Is error handling appropriate and comprehensive?</p></li>
+</ul>
+</section>
+<section id="review-comments">
+<h3>Review Comments<a class="headerlink" href="#review-comments" title="Link to this heading"></a></h3>
+<p>Provide constructive feedback:</p>
+<ul class="simple">
+<li><p><strong>Be Specific</strong>: Point out specific issues with line numbers</p></li>
+<li><p><strong>Suggest Solutions</strong>: Offer concrete suggestions for improvement</p></li>
+<li><p><strong>Be Respectful</strong>: Maintain a professional and helpful tone</p></li>
+<li><p><strong>Focus on Code</strong>: Keep feedback focused on the code, not the person</p></li>
+</ul>
+<p>Example Review Comment:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="sb">```python</span>
+<span class="c1"># Line 45: Consider adding input validation here</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">process_query</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="c1"># Missing validation for empty or None query</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_search</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="sb">```</span>
+
+<span class="gs">**Suggestion**</span>: Add input validation to handle edge cases:
+
+<span class="sb">```python</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">process_query</span><span class="p">(</span><span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">query</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">query</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Query cannot be empty&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_search</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="sb">```</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="issue-reporting">
+<h2>Issue Reporting<a class="headerlink" href="#issue-reporting" title="Link to this heading"></a></h2>
+<section id="bug-reports">
+<h3>Bug Reports<a class="headerlink" href="#bug-reports" title="Link to this heading"></a></h3>
+<p>When reporting bugs, include:</p>
+<ol class="arabic simple">
+<li><p><strong>Clear Description</strong>: What happened vs. what was expected</p></li>
+<li><p><strong>Reproduction Steps</strong>: Step-by-step instructions to reproduce</p></li>
+<li><p><strong>Environment</strong>: OS, Python version, package versions</p></li>
+<li><p><strong>Error Messages</strong>: Full error messages and stack traces</p></li>
+<li><p><strong>Minimal Example</strong>: Minimal code example that reproduces the issue</p></li>
+</ol>
+<p>Bug Report Template:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gu">## Bug Description</span>
+
+Brief description of the bug.
+
+<span class="gu">## Steps to Reproduce</span>
+
+<span class="k">1.</span> Step 1
+<span class="k">2.</span> Step 2
+<span class="k">3.</span> Step 3
+
+<span class="gu">## Expected Behavior</span>
+
+What you expected to happen.
+
+<span class="gu">## Actual Behavior</span>
+
+What actually happened.
+
+<span class="gu">## Environment</span>
+
+<span class="k">-</span><span class="w"> </span>OS: [e.g., Windows 10, macOS 12.0, Ubuntu 20.04]
+<span class="k">-</span><span class="w"> </span>Python Version: [e.g., 3.10.0]
+<span class="k">-</span><span class="w"> </span>Package Versions: [e.g., crewai 0.165.1, faiss-cpu 1.12.0]
+
+<span class="gu">## Error Messages</span>
+
+<span class="sb">```</span>
+<span class="sb">Paste error messages here</span>
+<span class="sb">```</span>
+
+<span class="gu">## Additional Information</span>
+
+Any other context about the problem.
+</pre></div>
+</div>
+</section>
+<section id="feature-requests">
+<h3>Feature Requests<a class="headerlink" href="#feature-requests" title="Link to this heading"></a></h3>
+<p>When requesting features, include:</p>
+<ol class="arabic simple">
+<li><p><strong>Problem Statement</strong>: What problem does this feature solve?</p></li>
+<li><p><strong>Proposed Solution</strong>: How should the feature work?</p></li>
+<li><p><strong>Use Cases</strong>: What are the main use cases?</p></li>
+<li><p><strong>Alternatives</strong>: What alternatives have you considered?</p></li>
+<li><p><strong>Impact</strong>: What is the expected impact on the project?</p></li>
+</ol>
+<p>Feature Request Template:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gu">## Problem Statement</span>
+
+Clear description of the problem this feature would solve.
+
+<span class="gu">## Proposed Solution</span>
+
+Description of how the feature should work.
+
+<span class="gu">## Use Cases</span>
+
+<span class="k">-</span><span class="w"> </span>Use case 1
+<span class="k">-</span><span class="w"> </span>Use case 2
+<span class="k">-</span><span class="w"> </span>Use case 3
+
+<span class="gu">## Alternatives Considered</span>
+
+Description of alternatives you&#39;ve considered.
+
+<span class="gu">## Impact</span>
+
+Expected impact on the project and users.
+</pre></div>
+</div>
+</section>
+</section>
+<section id="community-guidelines">
+<h2>Community Guidelines<a class="headerlink" href="#community-guidelines" title="Link to this heading"></a></h2>
+<section id="code-of-conduct">
+<h3>Code of Conduct<a class="headerlink" href="#code-of-conduct" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Be Respectful</strong>: Treat all contributors with respect</p></li>
+<li><p><strong>Be Inclusive</strong>: Welcome contributors from diverse backgrounds</p></li>
+<li><p><strong>Be Constructive</strong>: Provide helpful and constructive feedback</p></li>
+<li><p><strong>Be Patient</strong>: Understand that contributors have different skill levels</p></li>
+<li><p><strong>Be Collaborative</strong>: Work together to improve the project</p></li>
+</ul>
+</section>
+<section id="communication-channels">
+<h3>Communication Channels<a class="headerlink" href="#communication-channels" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>GitHub Issues</strong>: For bug reports and feature requests</p></li>
+<li><p><strong>GitHub Discussions</strong>: For questions and general discussion</p></li>
+<li><p><strong>Pull Requests</strong>: For code contributions and reviews</p></li>
+<li><p><strong>Documentation</strong>: For improving project documentation</p></li>
+</ul>
+</section>
+<section id="getting-help">
+<h3>Getting Help<a class="headerlink" href="#getting-help" title="Link to this heading"></a></h3>
+<p>If you need help:</p>
+<ol class="arabic simple">
+<li><p><strong>Check Documentation</strong>: Review the project documentation first</p></li>
+<li><p><strong>Search Issues</strong>: Look for similar issues in the GitHub repository</p></li>
+<li><p><strong>Ask Questions</strong>: Use GitHub Discussions for questions</p></li>
+<li><p><strong>Join Community</strong>: Participate in community discussions</p></li>
+</ol>
+</section>
+</section>
+<section id="recognition">
+<h2>Recognition<a class="headerlink" href="#recognition" title="Link to this heading"></a></h2>
+<section id="contributor-recognition">
+<h3>Contributor Recognition<a class="headerlink" href="#contributor-recognition" title="Link to this heading"></a></h3>
+<p>Contributors are recognized through:</p>
+<ul class="simple">
+<li><p><strong>Contributors List</strong>: Added to the project’s contributors list</p></li>
+<li><p><strong>Commit History</strong>: Git commit history preserves contributions</p></li>
+<li><p><strong>Release Notes</strong>: Contributors acknowledged in release notes</p></li>
+<li><p><strong>Documentation</strong>: Contributors credited in relevant documentation</p></li>
+</ul>
+</section>
+<section id="types-of-contributions">
+<h3>Types of Contributions<a class="headerlink" href="#types-of-contributions" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Code Contributors</strong>: Those who contribute code changes</p></li>
+<li><p><strong>Documentation Contributors</strong>: Those who improve documentation</p></li>
+<li><p><strong>Test Contributors</strong>: Those who add or improve tests</p></li>
+<li><p><strong>Review Contributors</strong>: Those who provide code reviews</p></li>
+<li><p><strong>Community Contributors</strong>: Those who help with community support</p></li>
+</ul>
+<p>For more information about development, see the <a class="reference internal" href="development.html"><span class="doc">Development Guide</span></a> section.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="development.html" class="btn btn-neutral float-left" title="Development Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="application_compliance.html" class="btn btn-neutral float-right" title="Application Compliance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Manuel e Anna.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

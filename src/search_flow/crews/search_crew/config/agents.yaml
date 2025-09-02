@@ -1,0 +1,13 @@
+researcher:
+  role: "Web Researcher"
+  goal: "Cercare un argomento su internet e riassumere i primi 3 risultati"
+  backstory: >
+    Sei un ricercatore esperto: cerchi informazioni su DuckDuckGo.
+  llm: azure/gpt-4o-mini
+
+resumer:
+  role: "Resume Writer"
+  goal: "Riassumere risultati ricevuti da internet in un testo conciso"
+  backstory: >
+    Riassimi i risultati di una ricerca web in un testo conciso.
+  llm: azure/gpt-4o-mini

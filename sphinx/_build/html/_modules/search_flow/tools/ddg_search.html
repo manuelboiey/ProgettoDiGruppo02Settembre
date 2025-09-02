@@ -1,0 +1,519 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>search_flow.tools.ddg_search &mdash; RAG Search Flow 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            RAG Search Flow
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#installation-steps">Installation Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#virtual-environment-setup">Virtual Environment Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#development-installation">Development Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quick Start Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#example-session">Example Session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#advanced-features">Advanced Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../quickstart.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core Components:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../search_flow.html">Search Flow Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../search_flow.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../search_flow.html#architecture-diagram">Architecture Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../search_flow.html#core-components">Core Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../search_flow.html#searchstate">SearchState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../search_flow.html#searchflow">SearchFlow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../search_flow.html#flow-steps">Flow Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../search_flow.html#intent-detection">Intent Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../search_flow.html#routing-logic">Routing Logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../search_flow.html#state-management">State Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../search_flow.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../search_flow.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../search_flow.html#extending-the-flow">Extending the Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../search_flow.html#integration-points">Integration Points</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../crews.html">Crews System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../crews.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../crews.html#rag-crew">RAG Crew</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../crews.html#components">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../crews.html#workflow">Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../crews.html#search-crew">Search Crew</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../crews.html#id1">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../crews.html#id2">Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../crews.html#crew-collaboration">Crew Collaboration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../crews.html#agent-communication">Agent Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../crews.html#customizing-crews">Customizing Crews</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tools.html">Tools System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../tools.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tools.html#rag-tool">RAG Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tools.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tools.html#implementation">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tools.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tools.html#usage-example">Usage Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tools.html#duckduckgo-search-tool">DuckDuckGo Search Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../tools.html#id1">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tools.html#id2">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tools.html#id3">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../tools.html#id4">Usage Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tools.html#tool-integration">Tool Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tools.html#custom-tool-development">Custom Tool Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tools.html#tool-registration">Tool Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tools.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tools.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../tools.html#monitoring-and-logging">Monitoring and Logging</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration.html">Configuration Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#configuration-files-structure">Configuration Files Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#agents-configuration">Agents Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration.html#basic-agent-structure">Basic Agent Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration.html#agent-properties">Agent Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration.html#example-rag-crew-agents">Example RAG Crew Agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration.html#example-search-crew-agents">Example Search Crew Agents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#tasks-configuration">Tasks Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration.html#basic-task-structure">Basic Task Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration.html#task-properties">Task Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration.html#example-rag-crew-tasks">Example RAG Crew Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration.html#example-search-crew-tasks">Example Search Crew Tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#system-configuration">System Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration.html#configuration-file">Configuration File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#customization-examples">Customization Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration.html#adding-a-new-agent">Adding a New Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration.html#modifying-agent-behavior">Modifying Agent Behavior</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#advanced-configuration">Advanced Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration.html#configuration-validation">Configuration Validation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/modules.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/modules.html#module-search_flow.main">Search Flow Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#search_flow.main.SearchState"><code class="docutils literal notranslate"><span class="pre">SearchState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#search_flow.main.SearchState.question"><code class="docutils literal notranslate"><span class="pre">SearchState.question</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#search_flow.main.SearchState.type"><code class="docutils literal notranslate"><span class="pre">SearchState.type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#search_flow.main.SearchState.result"><code class="docutils literal notranslate"><span class="pre">SearchState.result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#search_flow.main.SearchState.raw_results"><code class="docutils literal notranslate"><span class="pre">SearchState.raw_results</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#search_flow.main.SearchState.summary"><code class="docutils literal notranslate"><span class="pre">SearchState.summary</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#search_flow.main.SearchState.model_config"><code class="docutils literal notranslate"><span class="pre">SearchState.model_config</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#search_flow.main.SearchFlow"><code class="docutils literal notranslate"><span class="pre">SearchFlow</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#search_flow.main.SearchFlow.rag_crew"><code class="docutils literal notranslate"><span class="pre">SearchFlow.rag_crew</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#search_flow.main.SearchFlow.search_crew"><code class="docutils literal notranslate"><span class="pre">SearchFlow.search_crew</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#search_flow.main.SearchFlow.detect_field"><code class="docutils literal notranslate"><span class="pre">SearchFlow.detect_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#search_flow.main.SearchFlow.route_field"><code class="docutils literal notranslate"><span class="pre">SearchFlow.route_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#search_flow.main.SearchFlow.rag"><code class="docutils literal notranslate"><span class="pre">SearchFlow.rag()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#search_flow.main.SearchFlow.run_research"><code class="docutils literal notranslate"><span class="pre">SearchFlow.run_research()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#search_flow.main.SearchFlow.run_summary"><code class="docutils literal notranslate"><span class="pre">SearchFlow.run_summary()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#search_flow.main.kickoff"><code class="docutils literal notranslate"><span class="pre">kickoff()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#search_flow.main.plot"><code class="docutils literal notranslate"><span class="pre">plot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#search-state">Search State</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#id0"><code class="docutils literal notranslate"><span class="pre">SearchState</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#search-flow">Search Flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#id7"><code class="docutils literal notranslate"><span class="pre">SearchFlow</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/modules.html#crews-module">Crews Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#module-search_flow.crews.rag_crew.rag_crew">RAG Crew</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#search_flow.crews.rag_crew.rag_crew.RAGCrew"><code class="docutils literal notranslate"><span class="pre">RAGCrew</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#module-search_flow.crews.search_crew.search_crew">Search Crew</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#search_flow.crews.search_crew.search_crew.SearchCrew"><code class="docutils literal notranslate"><span class="pre">SearchCrew</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/modules.html#tools-module">Tools Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#module-search_flow.tools.rag">RAG Tool</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#search_flow.tools.rag.Settings"><code class="docutils literal notranslate"><span class="pre">Settings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#search_flow.tools.rag.RAG"><code class="docutils literal notranslate"><span class="pre">RAG</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#module-search_flow.tools.ddg_search">DuckDuckGo Search Tool</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/modules.html#search_flow.tools.ddg_search.DDGSearch"><code class="docutils literal notranslate"><span class="pre">DDGSearch</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/modules.html#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#search_flow.crews.utils.build_sequential_crew"><code class="docutils literal notranslate"><span class="pre">build_sequential_crew()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#configuration-loading">Configuration Loading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#agent-creation">Agent Creation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#task-creation">Task Creation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/modules.html#class-diagrams">Class Diagrams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#search-flow-architecture">Search Flow Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#tool-hierarchy">Tool Hierarchy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/modules.html#method-reference">Method Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#searchflow-methods">SearchFlow Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#ragtool-methods">RAGTool Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#duckduckgosearchtool-methods">DuckDuckGoSearchTool Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/modules.html#data-models">Data Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#searchstate-fields">SearchState Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/modules.html#configuration-schemas">Configuration Schemas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#agent-configuration-schema">Agent Configuration Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#task-configuration-schema">Task Configuration Schema</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/modules.html#error-handling">Error Handling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#common-exceptions">Common Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#error-handling-patterns">Error Handling Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/modules.html#logging-and-debugging">Logging and Debugging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#logging-configuration">Logging Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#debug-information">Debug Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/modules.html#performance-monitoring">Performance Monitoring</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#timing-decorators">Timing Decorators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#memory-usage-monitoring">Memory Usage Monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../api/modules.html#testing-and-validation">Testing and Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#unit-testing">Unit Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#integration-testing">Integration Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/modules.html#mock-testing">Mock Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples and Use Cases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples.html#basic-usage-examples">Basic Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#simple-medical-query">Simple Medical Query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#simple-web-query">Simple Web Query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#interactive-session">Interactive Session</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples.html#advanced-usage-examples">Advanced Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#custom-rag-crew">Custom RAG Crew</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#custom-search-crew">Custom Search Crew</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#custom-tools">Custom Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples.html#integration-examples">Integration Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#flask-web-application">Flask Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#fastapi-application">FastAPI Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#batch-processing">Batch Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples.html#custom-configuration-examples">Custom Configuration Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#environment-specific-configuration">Environment-Specific Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#dynamic-configuration-loading">Dynamic Configuration Loading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples.html#testing-examples">Testing Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#unit-tests">Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#integration-tests">Integration Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples.html#performance-testing">Performance Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../development.html">Development Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#development-environment-setup">Development Environment Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#initial-setup">Initial Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#code-style-and-standards">Code Style and Standards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#python-style-guide">Python Style Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#code-formatting">Code Formatting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#testing-guidelines">Testing Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#test-structure">Test Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#running-tests">Running Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#extending-the-system">Extending the System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#adding-new-tools">Adding New Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#adding-new-agents">Adding New Agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#adding-new-search-types">Adding New Search Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#configuration-management">Configuration Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#environment-specific-configs">Environment-Specific Configs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#dynamic-configuration">Dynamic Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#performance-optimization">Performance Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#profiling-and-monitoring">Profiling and Monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#caching-strategies">Caching Strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#error-handling-and-logging">Error Handling and Logging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#custom-exceptions">Custom Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#structured-logging">Structured Logging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#debugging-tools">Debugging Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#interactive-debugging">Interactive Debugging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../development.html#development-workflow">Development Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#feature-development">Feature Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#code-review-process">Code Review Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../development.html#continuous-integration">Continuous Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#how-to-contribute">How to Contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#development-workflow">Development Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#coding-standards">Coding Standards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#python-style-guide">Python Style Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#import-organization">Import Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#naming-conventions">Naming Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#testing-guidelines">Testing Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#test-structure">Test Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#test-fixtures">Test Fixtures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#running-tests">Running Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#documentation-standards">Documentation Standards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#documentation-structure">Documentation Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#docstring-format">Docstring Format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#pull-request-guidelines">Pull Request Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#before-submitting">Before Submitting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#pull-request-template">Pull Request Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#code-review-process">Code Review Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#review-checklist">Review Checklist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#review-comments">Review Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#issue-reporting">Issue Reporting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#bug-reports">Bug Reports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#feature-requests">Feature Requests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#community-guidelines">Community Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#code-of-conduct">Code of Conduct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#communication-channels">Communication Channels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../contributing.html#recognition">Recognition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#contributor-recognition">Contributor Recognition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../contributing.html#types-of-contributions">Types of Contributions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Compliance:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../ai_compliance.html">EU AI Act Compliance</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">RAG Search Flow</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">search_flow.tools.ddg_search</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for search_flow.tools.ddg_search</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Strumento DuckDuckGo per ricerche testuali.</span>
+
+<span class="sd">Espone `DDGSearch`, un tool compatibile con CrewAI per effettuare ricerche</span>
+<span class="sd">testuali tramite DuckDuckGo e restituire risultati formattati.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">crewai.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseTool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ddgs</span><span class="w"> </span><span class="kn">import</span> <span class="n">DDGS</span>
+
+<div class="viewcode-block" id="DDGSearch">
+<a class="viewcode-back" href="../../../api/modules.html#search_flow.tools.ddg_search.DDGSearch">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DDGSearch</span><span class="p">(</span><span class="n">BaseTool</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Tool per eseguire ricerche su DuckDuckGo.&quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;duckduckgo_search&quot;</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Uno strumento per cercare risultati su DuckDuckGo&quot;</span>
+
+<div class="viewcode-block" id="DDGSearch._run">
+<a class="viewcode-back" href="../../../api/modules.html#search_flow.tools.ddg_search.DDGSearch._run">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">run_manager</span><span class="p">:</span> <span class="n">Any</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>  <span class="c1"># noqa: ARG002, W0613</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Esegue una ricerca testuale su DuckDuckGo.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            query: Testo della query da ricercare.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: Risultati formattati come elenco numerato con titolo, URL e snippet.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">            ValueError: Se la query è vuota o None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">query</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Fornisci una query valida.&quot;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="n">DDGS</span><span class="p">(</span><span class="n">verify</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">as</span> <span class="n">ddgs</span><span class="p">:</span>
+            <span class="n">risultati</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ddgs</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="s2">&quot;it-it&quot;</span><span class="p">,</span> <span class="n">safesearch</span><span class="o">=</span><span class="s2">&quot;off&quot;</span><span class="p">,</span> <span class="n">max_results</span><span class="o">=</span><span class="mi">3</span><span class="p">))</span>
+
+        <span class="n">output</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">risultati</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">titolo</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;href&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;url&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span>
+            <span class="n">snippet</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;body&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            <span class="n">output</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">titolo</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">snippet</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Manuel e Anna.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

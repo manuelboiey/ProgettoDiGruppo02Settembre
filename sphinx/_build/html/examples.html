@@ -1,0 +1,1288 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examples and Use Cases &mdash; RAG Search Flow 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=01f34227"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Development Guide" href="development.html" />
+    <link rel="prev" title="API Reference" href="api/modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            RAG Search Flow
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#system-requirements">System Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-steps">Installation Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#common-issues-and-solutions">Common Issues and Solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#virtual-environment-setup">Virtual Environment Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#development-installation">Development Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#basic-usage">Basic Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#example-session">Example Session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#advanced-features">Advanced Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#next-steps">Next Steps</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Core Components:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="search_flow.html">Search Flow Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#architecture-diagram">Architecture Diagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#core-components">Core Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="search_flow.html#searchstate">SearchState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="search_flow.html#searchflow">SearchFlow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#flow-steps">Flow Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#intent-detection">Intent Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#routing-logic">Routing Logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#state-management">State Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#extending-the-flow">Extending the Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="search_flow.html#integration-points">Integration Points</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="crews.html">Crews System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#rag-crew">RAG Crew</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="crews.html#components">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crews.html#workflow">Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#search-crew">Search Crew</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="crews.html#id1">Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="crews.html#id2">Workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#crew-collaboration">Crew Collaboration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#agent-communication">Agent Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="crews.html#customizing-crews">Customizing Crews</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tools.html">Tools System</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#rag-tool">RAG Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#features">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#implementation">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#configuration">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#usage-example">Usage Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#duckduckgo-search-tool">DuckDuckGo Search Tool</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#id1">Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#id2">Implementation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#id3">Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tools.html#id4">Usage Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#tool-integration">Tool Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#custom-tool-development">Custom Tool Development</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#tool-registration">Tool Registration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#error-handling">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tools.html#monitoring-and-logging">Monitoring and Logging</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Configuration:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-files-structure">Configuration Files Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#agents-configuration">Agents Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#basic-agent-structure">Basic Agent Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#agent-properties">Agent Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#example-rag-crew-agents">Example RAG Crew Agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#example-search-crew-agents">Example Search Crew Agents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#tasks-configuration">Tasks Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#basic-task-structure">Basic Task Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#task-properties">Task Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#example-rag-crew-tasks">Example RAG Crew Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#example-search-crew-tasks">Example Search Crew Tasks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#system-configuration">System Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#environment-variables">Environment Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#configuration-file">Configuration File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#customization-examples">Customization Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#adding-a-new-agent">Adding a New Agent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configuration.html#modifying-agent-behavior">Modifying Agent Behavior</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#advanced-configuration">Advanced Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html#configuration-validation">Configuration Validation</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/modules.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#module-search_flow.main">Search Flow Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState"><code class="docutils literal notranslate"><span class="pre">SearchState</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.question"><code class="docutils literal notranslate"><span class="pre">SearchState.question</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.type"><code class="docutils literal notranslate"><span class="pre">SearchState.type</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.result"><code class="docutils literal notranslate"><span class="pre">SearchState.result</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.raw_results"><code class="docutils literal notranslate"><span class="pre">SearchState.raw_results</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.summary"><code class="docutils literal notranslate"><span class="pre">SearchState.summary</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchState.model_config"><code class="docutils literal notranslate"><span class="pre">SearchState.model_config</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow"><code class="docutils literal notranslate"><span class="pre">SearchFlow</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.rag_crew"><code class="docutils literal notranslate"><span class="pre">SearchFlow.rag_crew</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.search_crew"><code class="docutils literal notranslate"><span class="pre">SearchFlow.search_crew</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.detect_field"><code class="docutils literal notranslate"><span class="pre">SearchFlow.detect_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.route_field"><code class="docutils literal notranslate"><span class="pre">SearchFlow.route_field()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.rag"><code class="docutils literal notranslate"><span class="pre">SearchFlow.rag()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.run_research"><code class="docutils literal notranslate"><span class="pre">SearchFlow.run_research()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.main.SearchFlow.run_summary"><code class="docutils literal notranslate"><span class="pre">SearchFlow.run_summary()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.main.kickoff"><code class="docutils literal notranslate"><span class="pre">kickoff()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.main.plot"><code class="docutils literal notranslate"><span class="pre">plot()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search-state">Search State</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#id0"><code class="docutils literal notranslate"><span class="pre">SearchState</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search-flow">Search Flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#id7"><code class="docutils literal notranslate"><span class="pre">SearchFlow</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#crews-module">Crews Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#module-search_flow.crews.rag_crew.rag_crew">RAG Crew</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.crews.rag_crew.rag_crew.RAGCrew"><code class="docutils literal notranslate"><span class="pre">RAGCrew</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#module-search_flow.crews.search_crew.search_crew">Search Crew</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.crews.search_crew.search_crew.SearchCrew"><code class="docutils literal notranslate"><span class="pre">SearchCrew</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#tools-module">Tools Module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#module-search_flow.tools.rag">RAG Tool</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.tools.rag.Settings"><code class="docutils literal notranslate"><span class="pre">Settings</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.tools.rag.RAG"><code class="docutils literal notranslate"><span class="pre">RAG</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#module-search_flow.tools.ddg_search">DuckDuckGo Search Tool</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/modules.html#search_flow.tools.ddg_search.DDGSearch"><code class="docutils literal notranslate"><span class="pre">DDGSearch</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#utility-functions">Utility Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search_flow.crews.utils.build_sequential_crew"><code class="docutils literal notranslate"><span class="pre">build_sequential_crew()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#configuration-loading">Configuration Loading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#agent-creation">Agent Creation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#task-creation">Task Creation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#class-diagrams">Class Diagrams</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#search-flow-architecture">Search Flow Architecture</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#tool-hierarchy">Tool Hierarchy</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#method-reference">Method Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#searchflow-methods">SearchFlow Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#ragtool-methods">RAGTool Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#duckduckgosearchtool-methods">DuckDuckGoSearchTool Methods</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#data-models">Data Models</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#searchstate-fields">SearchState Fields</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#configuration-schemas">Configuration Schemas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#agent-configuration-schema">Agent Configuration Schema</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#task-configuration-schema">Task Configuration Schema</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#error-handling">Error Handling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#common-exceptions">Common Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#error-handling-patterns">Error Handling Patterns</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#logging-and-debugging">Logging and Debugging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#logging-configuration">Logging Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#debug-information">Debug Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#performance-monitoring">Performance Monitoring</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#timing-decorators">Timing Decorators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#memory-usage-monitoring">Memory Usage Monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api/modules.html#testing-and-validation">Testing and Validation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#unit-testing">Unit Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#integration-testing">Integration Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/modules.html#mock-testing">Mock Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples and Use Cases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-usage-examples">Basic Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simple-medical-query">Simple Medical Query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simple-web-query">Simple Web Query</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interactive-session">Interactive Session</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-usage-examples">Advanced Usage Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#custom-rag-crew">Custom RAG Crew</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-search-crew">Custom Search Crew</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-tools">Custom Tools</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#integration-examples">Integration Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#flask-web-application">Flask Web Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#fastapi-application">FastAPI Application</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#batch-processing">Batch Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#custom-configuration-examples">Custom Configuration Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#environment-specific-configuration">Environment-Specific Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-configuration-loading">Dynamic Configuration Loading</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-examples">Testing Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#unit-tests">Unit Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#integration-tests">Integration Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-testing">Performance Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="development.html">Development Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="development.html#development-environment-setup">Development Environment Setup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#prerequisites">Prerequisites</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#initial-setup">Initial Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#code-style-and-standards">Code Style and Standards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#python-style-guide">Python Style Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#code-formatting">Code Formatting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#testing-guidelines">Testing Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#test-structure">Test Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#running-tests">Running Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#extending-the-system">Extending the System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#adding-new-tools">Adding New Tools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#adding-new-agents">Adding New Agents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#adding-new-search-types">Adding New Search Types</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#configuration-management">Configuration Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#environment-specific-configs">Environment-Specific Configs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#dynamic-configuration">Dynamic Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#performance-optimization">Performance Optimization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#profiling-and-monitoring">Profiling and Monitoring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#caching-strategies">Caching Strategies</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#error-handling-and-logging">Error Handling and Logging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#custom-exceptions">Custom Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#structured-logging">Structured Logging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#debugging-tools">Debugging Tools</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#interactive-debugging">Interactive Debugging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="development.html#development-workflow">Development Workflow</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="development.html#feature-development">Feature Development</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#code-review-process">Code Review Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="development.html#continuous-integration">Continuous Integration</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing Guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#how-to-contribute">How to Contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#getting-started">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#development-workflow">Development Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#coding-standards">Coding Standards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#python-style-guide">Python Style Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#import-organization">Import Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#naming-conventions">Naming Conventions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#testing-guidelines">Testing Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#test-structure">Test Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#writing-tests">Writing Tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#test-fixtures">Test Fixtures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#running-tests">Running Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#documentation-standards">Documentation Standards</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#documentation-structure">Documentation Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#docstring-format">Docstring Format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#pull-request-guidelines">Pull Request Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#before-submitting">Before Submitting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#pull-request-template">Pull Request Template</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#code-review-process">Code Review Process</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#review-checklist">Review Checklist</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#review-comments">Review Comments</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#issue-reporting">Issue Reporting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#bug-reports">Bug Reports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#feature-requests">Feature Requests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#community-guidelines">Community Guidelines</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#code-of-conduct">Code of Conduct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#communication-channels">Communication Channels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="contributing.html#recognition">Recognition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#contributor-recognition">Contributor Recognition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contributing.html#types-of-contributions">Types of Contributions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EU AI Act Compliance:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="application_compliance.html">Application Compliance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#application-owner">Application Owner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#document-version">Document Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#reviewers">Reviewers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="application_compliance.html#general-information">General Information</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#purpose-and-intended-use">Purpose and Intended Use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#operational-environment">Operational Environment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="application_compliance.html#application-functionality">Application Functionality</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#instructions-for-use-for-deployers">Instructions for Use for Deployers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#model-capabilities-and-limitations">Model Capabilities and Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#input-data-requirements">Input Data Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#output-explanation">Output Explanation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#system-architecture-overview">System Architecture Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="application_compliance.html#models-and-datasets">Models and Datasets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#models">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="application_compliance.html#datasets">Datasets</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_compliance.html">Data Compliance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#known-usage-in-the-system">Known Usage in the System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#dataset-characteristics">Dataset Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#origin-and-provenance">Origin and Provenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#pre-processing-and-indexing">Pre-processing and Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#access-retention-and-distribution">Access, Retention, and Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#bias-fairness-and-safety-notes">Bias, Fairness, and Safety Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#deployer-guidance-responsible-use">Deployer Guidance (Responsible Use)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_compliance.html#appendix-file-pointers">Appendix: File Pointers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ai_compliance.html">Model compliance</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#model-description">Model Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#version-details-and-artifacts">Version Details and Artifacts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#intended-and-known-usage">Intended and Known Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#known-applications">Known Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#model-architecture">Model Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#data-collection-and-preprocessing">Data Collection and Preprocessing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#model-training-and-evaluation">Model Training and Evaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#bias-and-fairness-analysis">Bias and Fairness Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#model-interpretability-and-explainability">Model Interpretability and Explainability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#eu-declaration-of-conformity">EU Declaration of Conformity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai_compliance.html#documentation-metadata">Documentation Metadata</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RAG Search Flow</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Examples and Use Cases</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/examples.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="examples-and-use-cases">
+<h1>Examples and Use Cases<a class="headerlink" href="#examples-and-use-cases" title="Link to this heading"></a></h1>
+<p>This section provides practical examples and use cases for the RAG Search Flow system, demonstrating how to use different features and customize the system for various scenarios.</p>
+<section id="basic-usage-examples">
+<h2>Basic Usage Examples<a class="headerlink" href="#basic-usage-examples" title="Link to this heading"></a></h2>
+<section id="simple-medical-query">
+<h3>Simple Medical Query<a class="headerlink" href="#simple-medical-query" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">SearchFlow</span>
+
+<span class="c1"># Initialize the search flow</span>
+<span class="n">flow</span> <span class="o">=</span> <span class="n">SearchFlow</span><span class="p">()</span>
+
+<span class="c1"># Ask a medical question</span>
+<span class="n">flow</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">question</span> <span class="o">=</span> <span class="s2">&quot;What are the symptoms of diabetes?&quot;</span>
+
+<span class="c1"># Run the flow</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">detect_field</span><span class="p">()</span>
+
+<span class="c1"># The system will automatically:</span>
+<span class="c1"># 1. Detect this as a medical query</span>
+<span class="c1"># 2. Route to RAG crew for document search</span>
+<span class="c1"># 3. Return relevant medical information</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Query type: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Results: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="simple-web-query">
+<h3>Simple Web Query<a class="headerlink" href="#simple-web-query" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">SearchFlow</span>
+
+<span class="c1"># Initialize the search flow</span>
+<span class="n">flow</span> <span class="o">=</span> <span class="n">SearchFlow</span><span class="p">()</span>
+
+<span class="c1"># Ask a general question</span>
+<span class="n">flow</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">question</span> <span class="o">=</span> <span class="s2">&quot;What&#39;s the latest news about AI technology?&quot;</span>
+
+<span class="c1"># Run the flow</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">detect_field</span><span class="p">()</span>
+
+<span class="c1"># The system will automatically:</span>
+<span class="c1"># 1. Detect this as a general query</span>
+<span class="c1"># 2. Route to search crew for web search</span>
+<span class="c1"># 3. Return summarized web results</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Query type: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">type</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Summary: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="interactive-session">
+<h3>Interactive Session<a class="headerlink" href="#interactive-session" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">SearchFlow</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">interactive_search</span><span class="p">():</span>
+    <span class="n">flow</span> <span class="o">=</span> <span class="n">SearchFlow</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Welcome to RAG Search Flow!&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Ask me anything - medical questions or general queries.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Type &#39;quit&#39; to exit.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Get user input</span>
+            <span class="n">question</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;&gt; &quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">question</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;quit&#39;</span><span class="p">:</span>
+                <span class="k">break</span>
+
+            <span class="c1"># Set the question and run the flow</span>
+            <span class="n">flow</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">question</span> <span class="o">=</span> <span class="n">question</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">detect_field</span><span class="p">()</span>
+
+            <span class="c1"># Display results based on type</span>
+            <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;medicina&quot;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🔬 Medical Information:&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">result</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">result</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;altro&quot;</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">🌐 Web Search Results:&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;❓ I couldn&#39;t determine the type of query.&quot;</span><span class="p">)</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">50</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Goodbye!&quot;</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">interactive_search</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="advanced-usage-examples">
+<h2>Advanced Usage Examples<a class="headerlink" href="#advanced-usage-examples" title="Link to this heading"></a></h2>
+<section id="custom-rag-crew">
+<h3>Custom RAG Crew<a class="headerlink" href="#custom-rag-crew" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.crews.rag_crew.rag_crew</span><span class="w"> </span><span class="kn">import</span> <span class="n">RAGCrew</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">crewai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Agent</span><span class="p">,</span> <span class="n">Task</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CustomRAGCrew</span><span class="p">(</span><span class="n">RAGCrew</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># Add custom configuration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">custom_config</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;specialized_agent&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Cardiology Specialist&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;Expert cardiologist&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;goal&quot;</span><span class="p">:</span> <span class="s2">&quot;Provide specialized cardiovascular information&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;backstory&quot;</span><span class="p">:</span> <span class="s2">&quot;Board-certified cardiologist with 20+ years experience&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s2">&quot;tools&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;rag_search_tool&quot;</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">cardiology_specialist</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a specialized cardiology agent.&quot;&quot;&quot;</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">custom_config</span><span class="p">[</span><span class="s2">&quot;specialized_agent&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">Agent</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">cardiology_search_task</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a specialized cardiology search task.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Task</span><span class="p">(</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Search for specialized cardiovascular information&quot;</span><span class="p">,</span>
+            <span class="n">expected_output</span><span class="o">=</span><span class="s2">&quot;Detailed cardiovascular medical information&quot;</span><span class="p">,</span>
+            <span class="n">agent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cardiology_specialist</span><span class="p">()</span>
+        <span class="p">)</span>
+
+<span class="c1"># Usage</span>
+<span class="n">custom_crew</span> <span class="o">=</span> <span class="n">CustomRAGCrew</span><span class="p">()</span>
+<span class="n">specialist</span> <span class="o">=</span> <span class="n">custom_crew</span><span class="o">.</span><span class="n">cardiology_specialist</span><span class="p">()</span>
+<span class="n">task</span> <span class="o">=</span> <span class="n">custom_crew</span><span class="o">.</span><span class="n">cardiology_search_task</span><span class="p">()</span>
+
+<span class="c1"># Execute the task</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">specialist</span><span class="o">.</span><span class="n">execute_task</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="s2">&quot;heart disease symptoms&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-search-crew">
+<h3>Custom Search Crew<a class="headerlink" href="#custom-search-crew" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.crews.search_crew.search_crew</span><span class="w"> </span><span class="kn">import</span> <span class="n">SearchCrew</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">crewai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Agent</span><span class="p">,</span> <span class="n">Task</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CustomSearchCrew</span><span class="p">(</span><span class="n">SearchCrew</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="c1"># Add specialized news search agent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">news_config</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;news_specialist&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;News Research Specialist&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;Expert news researcher and analyst&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;goal&quot;</span><span class="p">:</span> <span class="s2">&quot;Find and analyze the most relevant news&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;backstory&quot;</span><span class="p">:</span> <span class="s2">&quot;Experienced journalist and news analyst&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;verbose&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                <span class="s2">&quot;tools&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;ddg_search_tool&quot;</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">news_specialist</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a specialized news research agent.&quot;&quot;&quot;</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">news_config</span><span class="p">[</span><span class="s2">&quot;news_specialist&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">Agent</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">news_search_task</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a specialized news search task.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Task</span><span class="p">(</span>
+            <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Search for and analyze relevant news articles&quot;</span><span class="p">,</span>
+            <span class="n">expected_output</span><span class="o">=</span><span class="s2">&quot;Comprehensive news analysis with key insights&quot;</span><span class="p">,</span>
+            <span class="n">agent</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">news_specialist</span><span class="p">()</span>
+        <span class="p">)</span>
+
+<span class="c1"># Usage</span>
+<span class="n">custom_crew</span> <span class="o">=</span> <span class="n">CustomSearchCrew</span><span class="p">()</span>
+<span class="n">news_agent</span> <span class="o">=</span> <span class="n">custom_crew</span><span class="o">.</span><span class="n">news_specialist</span><span class="p">()</span>
+<span class="n">news_task</span> <span class="o">=</span> <span class="n">custom_crew</span><span class="o">.</span><span class="n">news_search_task</span><span class="p">()</span>
+
+<span class="c1"># Execute news search</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">news_agent</span><span class="o">.</span><span class="n">execute_task</span><span class="p">(</span><span class="n">news_task</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="s2">&quot;latest technology developments&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="custom-tools">
+<h3>Custom Tools<a class="headerlink" href="#custom-tools" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">crewai.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseTool</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">WeatherTool</span><span class="p">(</span><span class="n">BaseTool</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;weather_tool&quot;</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Get current weather information for a location&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get weather information for a specific location.&quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># This is a simplified example - you&#39;d use a real weather API</span>
+            <span class="c1"># For demonstration, we&#39;ll return mock data</span>
+            <span class="n">weather_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;Rome&quot;</span><span class="p">:</span> <span class="s2">&quot;22°C, Sunny&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Milan&quot;</span><span class="p">:</span> <span class="s2">&quot;18°C, Cloudy&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Naples&quot;</span><span class="p">:</span> <span class="s2">&quot;25°C, Partly Cloudy&quot;</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="n">location</span> <span class="ow">in</span> <span class="n">weather_data</span><span class="p">:</span>
+                <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Weather in </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">weather_data</span><span class="p">[</span><span class="n">location</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Weather information not available for </span><span class="si">{</span><span class="n">location</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Error getting weather: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">location</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate the location input.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">location</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">location</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+<span class="c1"># Usage</span>
+<span class="n">weather_tool</span> <span class="o">=</span> <span class="n">WeatherTool</span><span class="p">()</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">weather_tool</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;Rome&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1"># Output: Weather in Rome: 22°C, Sunny</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="integration-examples">
+<h2>Integration Examples<a class="headerlink" href="#integration-examples" title="Link to this heading"></a></h2>
+<section id="flask-web-application">
+<h3>Flask Web Application<a class="headerlink" href="#flask-web-application" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">flask</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">jsonify</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">SearchFlow</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Global flow instance</span>
+<span class="n">flow</span> <span class="o">=</span> <span class="n">SearchFlow</span><span class="p">()</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/search&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;API endpoint for search queries.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">get_json</span><span class="p">()</span>
+        <span class="n">question</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;question&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">question</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="s1">&#39;Question is required&#39;</span><span class="p">}),</span> <span class="mi">400</span>
+
+        <span class="c1"># Set the question and run the flow</span>
+        <span class="n">flow</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">question</span> <span class="o">=</span> <span class="n">question</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">detect_field</span><span class="p">()</span>
+
+        <span class="c1"># Prepare response</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;question&#39;</span><span class="p">:</span> <span class="n">question</span><span class="p">,</span>
+            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+            <span class="s1">&#39;result&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">result</span> <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;medicina&quot;</span> <span class="k">else</span> <span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span>
+            <span class="s1">&#39;raw_results&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">raw_results</span><span class="p">,</span>
+            <span class="s1">&#39;timestamp&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">timestamp</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="s1">&#39;timestamp&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">&#39;error&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)}),</span> <span class="mi">500</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/health&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;GET&#39;</span><span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">health</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Health check endpoint.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;healthy&#39;</span><span class="p">})</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">debug</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="fastapi-application">
+<h3>FastAPI Application<a class="headerlink" href="#fastapi-application" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">HTTPException</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">SearchFlow</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;RAG Search Flow API&quot;</span><span class="p">)</span>
+
+<span class="c1"># Global flow instance</span>
+<span class="n">flow</span> <span class="o">=</span> <span class="n">SearchFlow</span><span class="p">()</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SearchRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">question</span><span class="p">:</span> <span class="nb">str</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SearchResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">question</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="nb">type</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">result</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">raw_results</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">summary</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/search&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">SearchResponse</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">search</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">SearchRequest</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Search endpoint for queries.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Set the question and run the flow</span>
+        <span class="n">flow</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">question</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">question</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">flow</span><span class="o">.</span><span class="n">detect_field</span><span class="p">()</span>
+
+        <span class="c1"># Prepare response</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">SearchResponse</span><span class="p">(</span>
+            <span class="n">question</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">question</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+            <span class="n">result</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">result</span> <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;medicina&quot;</span> <span class="k">else</span> <span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span>
+            <span class="n">raw_results</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">raw_results</span><span class="p">,</span>
+            <span class="n">summary</span><span class="o">=</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/health&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">health</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Health check endpoint.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;healthy&quot;</span><span class="p">}</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">uvicorn</span>
+    <span class="n">uvicorn</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">app</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">8000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="batch-processing">
+<h3>Batch Processing<a class="headerlink" href="#batch-processing" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">SearchFlow</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BatchProcessor</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flow</span> <span class="o">=</span> <span class="n">SearchFlow</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">process_queries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queries</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Process multiple queries in batch.&quot;&quot;&quot;</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">query</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">queries</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing query </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="c1"># Set the question and run the flow</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">flow</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">question</span> <span class="o">=</span> <span class="n">query</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flow</span><span class="o">.</span><span class="n">detect_field</span><span class="p">()</span>
+
+                <span class="c1"># Store results</span>
+                <span class="n">query_result</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;query&#39;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
+                    <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">type</span><span class="p">,</span>
+                    <span class="s1">&#39;result&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">result</span> <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;medicina&quot;</span> <span class="k">else</span> <span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span>
+                    <span class="s1">&#39;raw_results&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">raw_results</span><span class="p">,</span>
+                    <span class="s1">&#39;summary&#39;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">,</span>
+                    <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="s1">&#39;success&#39;</span>
+                <span class="p">}</span>
+
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="n">query_result</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s1">&#39;query&#39;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span>
+                    <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;result&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;raw_results&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;summary&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+                    <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;error: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+                <span class="p">}</span>
+
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">query_result</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">results</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">save_to_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">],</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Save results to a CSV file.&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">csvfile</span><span class="p">:</span>
+            <span class="n">fieldnames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;query&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;result&#39;</span><span class="p">,</span> <span class="s1">&#39;raw_results&#39;</span><span class="p">,</span> <span class="s1">&#39;summary&#39;</span><span class="p">,</span> <span class="s1">&#39;status&#39;</span><span class="p">]</span>
+            <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">DictWriter</span><span class="p">(</span><span class="n">csvfile</span><span class="p">,</span> <span class="n">fieldnames</span><span class="o">=</span><span class="n">fieldnames</span><span class="p">)</span>
+
+            <span class="n">writer</span><span class="o">.</span><span class="n">writeheader</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+                <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+<span class="c1"># Usage</span>
+<span class="n">processor</span> <span class="o">=</span> <span class="n">BatchProcessor</span><span class="p">()</span>
+
+<span class="c1"># List of queries to process</span>
+<span class="n">queries</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;What are diabetes symptoms?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Latest news about AI&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;How to treat hypertension?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Weather forecast for Rome&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;What is machine learning?&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Process all queries</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">process_queries</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span>
+
+<span class="c1"># Save results to CSV</span>
+<span class="n">processor</span><span class="o">.</span><span class="n">save_to_csv</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="s1">&#39;search_results.csv&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processed </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">queries</span><span class="p">)</span><span class="si">}</span><span class="s2"> queries. Results saved to search_results.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="custom-configuration-examples">
+<h2>Custom Configuration Examples<a class="headerlink" href="#custom-configuration-examples" title="Link to this heading"></a></h2>
+<section id="environment-specific-configuration">
+<h3>Environment-Specific Configuration<a class="headerlink" href="#environment-specific-configuration" title="Link to this heading"></a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># config/development.yaml</span>
+<span class="nt">system</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">log_level</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;DEBUG&quot;</span>
+<span class="w">  </span><span class="nt">verbose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">cache_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="nt">agents</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">document_searcher</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">verbose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">max_iter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+
+<span class="nt">tools</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">rag</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">similarity_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
+<span class="w">    </span><span class="nt">max_results</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span>
+</pre></div>
+</div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># config/production.yaml</span>
+<span class="nt">system</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">log_level</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;WARNING&quot;</span>
+<span class="w">  </span><span class="nt">verbose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">cache_enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="nt">agents</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">document_searcher</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">verbose</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">max_iter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+
+<span class="nt">tools</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">rag</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">similarity_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.7</span>
+<span class="w">    </span><span class="nt">max_results</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+</pre></div>
+</div>
+</section>
+<section id="dynamic-configuration-loading">
+<h3>Dynamic Configuration Loading<a class="headerlink" href="#dynamic-configuration-loading" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">yaml</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ConfigManager</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">config_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;config&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">config_dir</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">environment</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load configuration for a specific environment.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">environment</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">environment</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;ENVIRONMENT&quot;</span><span class="p">,</span> <span class="s2">&quot;development&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Load base configuration</span>
+        <span class="n">base_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span> <span class="o">/</span> <span class="s2">&quot;base.yaml&quot;</span>
+        <span class="k">if</span> <span class="n">base_config</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">base_config</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+        <span class="c1"># Load environment-specific configuration</span>
+        <span class="n">env_config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">environment</span><span class="si">}</span><span class="s2">.yaml&quot;</span>
+        <span class="k">if</span> <span class="n">env_config</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">env_config</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">env_settings</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_merge_config</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">,</span> <span class="n">env_settings</span><span class="p">)</span>
+
+        <span class="c1"># Override with environment variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_override_from_env</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_merge_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">override</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Recursively merge configuration dictionaries.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">override</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">base</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">base</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_merge_config</span><span class="p">(</span><span class="n">base</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">value</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">base</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_override_from_env</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Override configuration with environment variables.&quot;&quot;&quot;</span>
+        <span class="n">env_mappings</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;LOG_LEVEL&quot;</span><span class="p">:</span> <span class="s2">&quot;system.log_level&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;VERBOSE&quot;</span><span class="p">:</span> <span class="s2">&quot;system.verbose&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;CACHE_ENABLED&quot;</span><span class="p">:</span> <span class="s2">&quot;system.cache_enabled&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;SIMILARITY_THRESHOLD&quot;</span><span class="p">:</span> <span class="s2">&quot;tools.rag.similarity_threshold&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;MAX_RESULTS&quot;</span><span class="p">:</span> <span class="s2">&quot;tools.rag.max_results&quot;</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="n">env_var</span><span class="p">,</span> <span class="n">config_path</span> <span class="ow">in</span> <span class="n">env_mappings</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">env_value</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="n">env_var</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">env_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_set_nested_value</span><span class="p">(</span><span class="n">config_path</span><span class="p">,</span> <span class="n">env_value</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_nested_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set a nested configuration value.&quot;&quot;&quot;</span>
+        <span class="n">keys</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
+
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">current</span><span class="p">:</span>
+                <span class="n">current</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+        <span class="c1"># Convert string values to appropriate types</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;true&#39;</span><span class="p">,</span> <span class="s1">&#39;false&#39;</span><span class="p">):</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;true&#39;</span>
+            <span class="k">elif</span> <span class="n">value</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">value</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">isdigit</span><span class="p">():</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+        <span class="n">current</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">value</span>
+
+<span class="c1"># Usage</span>
+<span class="n">config_manager</span> <span class="o">=</span> <span class="n">ConfigManager</span><span class="p">()</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">config_manager</span><span class="o">.</span><span class="n">load_config</span><span class="p">(</span><span class="s2">&quot;production&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Log level: </span><span class="si">{</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;system&#39;</span><span class="p">][</span><span class="s1">&#39;log_level&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Similarity threshold: </span><span class="si">{</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;tools&#39;</span><span class="p">][</span><span class="s1">&#39;rag&#39;</span><span class="p">][</span><span class="s1">&#39;similarity_threshold&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="testing-examples">
+<h2>Testing Examples<a class="headerlink" href="#testing-examples" title="Link to this heading"></a></h2>
+<section id="unit-tests">
+<h3>Unit Tests<a class="headerlink" href="#unit-tests" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">unittest.mock</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mock</span><span class="p">,</span> <span class="n">patch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.tools.rag</span><span class="w"> </span><span class="kn">import</span> <span class="n">RAGTool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">SearchFlow</span><span class="p">,</span> <span class="n">SearchState</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestRAGTool</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rag_tool</span> <span class="o">=</span> <span class="n">RAGTool</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_rag_tool_initialization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test RAG tool initialization.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rag_tool</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s2">&quot;rag_search_tool&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s2">&quot;medical document&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rag_tool</span><span class="o">.</span><span class="n">description</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_rag_tool_input_validation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test input validation.&quot;&quot;&quot;</span>
+        <span class="c1"># Valid input</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rag_tool</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="s2">&quot;diabetes symptoms&quot;</span><span class="p">))</span>
+
+        <span class="c1"># Invalid inputs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rag_tool</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rag_tool</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="kc">None</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rag_tool</span><span class="o">.</span><span class="n">_validate_input</span><span class="p">(</span><span class="mi">123</span><span class="p">))</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestSearchFlow</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flow</span> <span class="o">=</span> <span class="n">SearchFlow</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_search_state_initialization</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test SearchState initialization.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flow</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">question</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flow</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">flow</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">result</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="nd">@patch</span><span class="p">(</span><span class="s1">&#39;search_flow.main.LLM&#39;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_intent_detection_medical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mock_llm</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test medical intent detection.&quot;&quot;&quot;</span>
+        <span class="c1"># Mock LLM response</span>
+        <span class="n">mock_llm_instance</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+        <span class="n">mock_llm_instance</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;medicina&quot;</span>
+        <span class="n">mock_llm</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">mock_llm_instance</span>
+
+        <span class="c1"># Test medical query</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flow</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">question</span> <span class="o">=</span> <span class="s2">&quot;What are diabetes symptoms?&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flow</span><span class="o">.</span><span class="n">detect_field</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="s2">&quot;medicina&quot;</span><span class="p">)</span>
+
+    <span class="nd">@patch</span><span class="p">(</span><span class="s1">&#39;search_flow.main.LLM&#39;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_intent_detection_general</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mock_llm</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test general intent detection.&quot;&quot;&quot;</span>
+        <span class="c1"># Mock LLM response</span>
+        <span class="n">mock_llm_instance</span> <span class="o">=</span> <span class="n">Mock</span><span class="p">()</span>
+        <span class="n">mock_llm_instance</span><span class="o">.</span><span class="n">call</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s2">&quot;altro&quot;</span>
+        <span class="n">mock_llm</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="n">mock_llm_instance</span>
+
+        <span class="c1"># Test general query</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flow</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">question</span> <span class="o">=</span> <span class="s2">&quot;What&#39;s the weather like?&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flow</span><span class="o">.</span><span class="n">detect_field</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="s2">&quot;altro&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="integration-tests">
+<h3>Integration Tests<a class="headerlink" href="#integration-tests" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">SearchFlow</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.tools.rag</span><span class="w"> </span><span class="kn">import</span> <span class="n">RAGTool</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.tools.ddg_search</span><span class="w"> </span><span class="kn">import</span> <span class="n">DuckDuckGoSearchTool</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestIntegration</span><span class="p">:</span>
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">search_flow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a SearchFlow instance for testing.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">SearchFlow</span><span class="p">()</span>
+
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rag_tool</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a RAGTool instance for testing.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">RAGTool</span><span class="p">()</span>
+
+    <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ddg_tool</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a DuckDuckGoSearchTool instance for testing.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">DuckDuckGoSearchTool</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_complete_medical_flow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">search_flow</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test complete medical query flow.&quot;&quot;&quot;</span>
+        <span class="c1"># Set medical question</span>
+        <span class="n">search_flow</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">question</span> <span class="o">=</span> <span class="s2">&quot;What are the symptoms of diabetes?&quot;</span>
+
+        <span class="c1"># Run intent detection</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">search_flow</span><span class="o">.</span><span class="n">detect_field</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">result</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;medicina&quot;</span>
+
+        <span class="c1"># Test routing</span>
+        <span class="n">route</span> <span class="o">=</span> <span class="n">search_flow</span><span class="o">.</span><span class="n">route_field</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">route</span> <span class="o">==</span> <span class="s2">&quot;medicina&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_complete_general_flow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">search_flow</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test complete general query flow.&quot;&quot;&quot;</span>
+        <span class="c1"># Set general question</span>
+        <span class="n">search_flow</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">question</span> <span class="o">=</span> <span class="s2">&quot;What&#39;s the latest news?&quot;</span>
+
+        <span class="c1"># Run intent detection</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">search_flow</span><span class="o">.</span><span class="n">detect_field</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">result</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s2">&quot;altro&quot;</span>
+
+        <span class="c1"># Test routing</span>
+        <span class="n">route</span> <span class="o">=</span> <span class="n">search_flow</span><span class="o">.</span><span class="n">route_field</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">route</span> <span class="o">==</span> <span class="s2">&quot;altro&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_tool_integration</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rag_tool</span><span class="p">,</span> <span class="n">ddg_tool</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test tool integration and basic functionality.&quot;&quot;&quot;</span>
+        <span class="c1"># Test RAG tool</span>
+        <span class="n">rag_result</span> <span class="o">=</span> <span class="n">rag_tool</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;test medical query&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rag_result</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+
+        <span class="c1"># Test DuckDuckGo tool</span>
+        <span class="n">ddg_result</span> <span class="o">=</span> <span class="n">ddg_tool</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;test web query&quot;</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ddg_result</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="performance-testing">
+<h3>Performance Testing<a class="headerlink" href="#performance-testing" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">statistics</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">search_flow.main</span><span class="w"> </span><span class="kn">import</span> <span class="n">SearchFlow</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PerformanceTester</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flow</span> <span class="o">=</span> <span class="n">SearchFlow</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_query_performance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">iterations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Test performance of a specific query.&quot;&quot;&quot;</span>
+        <span class="n">times</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+            <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">flow</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">question</span> <span class="o">=</span> <span class="n">query</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flow</span><span class="o">.</span><span class="n">detect_field</span><span class="p">()</span>
+
+                <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+                <span class="n">execution_time</span> <span class="o">=</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span>
+                <span class="n">times</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">execution_time</span><span class="p">)</span>
+
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Iteration </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">execution_time</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error in iteration </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">times</span><span class="p">:</span>
+            <span class="n">stats</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s1">&#39;min&#39;</span><span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="n">times</span><span class="p">),</span>
+                <span class="s1">&#39;max&#39;</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="n">times</span><span class="p">),</span>
+                <span class="s1">&#39;mean&#39;</span><span class="p">:</span> <span class="n">statistics</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">times</span><span class="p">),</span>
+                <span class="s1">&#39;median&#39;</span><span class="p">:</span> <span class="n">statistics</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">times</span><span class="p">),</span>
+                <span class="s1">&#39;std&#39;</span><span class="p">:</span> <span class="n">statistics</span><span class="o">.</span><span class="n">stdev</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">times</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="mi">0</span>
+            <span class="p">}</span>
+
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Performance Statistics:&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">stats</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">key</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">stats</span>
+
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">benchmark_different_queries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">queries</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">iterations</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Benchmark different types of queries.&quot;&quot;&quot;</span>
+        <span class="n">benchmark_results</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">for</span> <span class="n">query</span> <span class="ow">in</span> <span class="n">queries</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Benchmarking: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+
+            <span class="n">stats</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_query_performance</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">iterations</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">stats</span><span class="p">:</span>
+                <span class="n">benchmark_results</span><span class="p">[</span><span class="n">query</span><span class="p">]</span> <span class="o">=</span> <span class="n">stats</span>
+
+        <span class="k">return</span> <span class="n">benchmark_results</span>
+
+<span class="c1"># Usage</span>
+<span class="n">tester</span> <span class="o">=</span> <span class="n">PerformanceTester</span><span class="p">()</span>
+
+<span class="c1"># Test queries</span>
+<span class="n">test_queries</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;What are diabetes symptoms?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Latest news about AI&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;How to treat hypertension?&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Weather forecast for Rome&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Run benchmarks</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">tester</span><span class="o">.</span><span class="n">benchmark_different_queries</span><span class="p">(</span><span class="n">test_queries</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Print summary</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;BENCHMARK SUMMARY&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">query</span><span class="p">,</span> <span class="n">stats</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Query: </span><span class="si">{</span><span class="n">query</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Average time: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;mean&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best time: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;min&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Worst time: </span><span class="si">{</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;max&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For more advanced examples and use cases, see the <a class="reference internal" href="development.html"><span class="doc">Development Guide</span></a> section.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api/modules.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="development.html" class="btn btn-neutral float-right" title="Development Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Manuel e Anna.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

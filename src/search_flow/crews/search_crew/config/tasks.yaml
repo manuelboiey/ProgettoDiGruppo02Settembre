@@ -1,0 +1,14 @@
+research_task:
+  description: >
+    Usa il tool di ricerca per trovare informazioni su "{topic}".
+    Mostra i primi 3 risultati con titolo, url e snippet.
+  expected_output: >
+    Elenco dei 3 risultati principali.
+  agent: researcher
+
+resume_task:
+  description: >
+    Riassumi i risultati della ricerca in un testo conciso.
+  expected_output: >
+    Riassunto della ricerca.
+  agent: resumer
